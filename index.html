@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth overflow-x-hidden w-full max-w-full">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>SEMESTER 5 AVASARALU — AIML Students Study Library</title>
   <meta name="description" content="Editorial study platform and PDF library for AIML students. Deep Learning, Computer Networks, and Operating Systems Mid-1 handwritten notes, important questions, and official Semester 5 syllabus.">
 
@@ -56,7 +56,13 @@
   </script>
 
   <style>
-    body {
+    *, ::before, ::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      max-width: 100vw;
+      overflow-x: hidden;
       background-color: #F5F3EE;
       color: #14221D;
     }
@@ -80,26 +86,25 @@
   </style>
 </head>
 
-<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-sage-600 selection:text-white">
+<body class="font-sans antialiased min-h-screen flex flex-col selection:bg-sage-600 selection:text-white w-full overflow-x-hidden">
 
   <!-- ========================================================== -->
-  <!-- EDITORIAL NAVBAR WITH PRECISE NAVIGATION ORDER -->
-  <!-- ORDER: 1. SYLLABUS, 2. SUBJECTS, 3. MID-1, 4. MID-2, 5. SEMESTER -->
+  <!-- EDITORIAL NAVBAR -->
   <!-- ========================================================== -->
-  <nav class="sticky top-0 z-40 glass-editorial border-b border-ink-border/70 transition-all duration-300">
+  <nav class="sticky top-0 z-40 glass-editorial border-b border-ink-border/70 transition-all duration-300 w-full">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
+      <div class="flex items-center justify-between h-16 sm:h-20">
         
         <!-- Brand Title with S5 Logo -->
-        <a href="#home" onclick="navGoHome(event)" class="flex items-center gap-3 group">
-          <div class="w-10 h-10 rounded-full bg-ink flex items-center justify-center text-canvas shadow-sm group-hover:scale-105 transition-transform border border-white/20">
-            <span class="font-display font-black text-sm tracking-tight leading-none text-sage-300">S5</span>
+        <a href="#home" onclick="navGoHome(event)" class="flex items-center gap-2.5 sm:gap-3 group truncate mr-2">
+          <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-ink flex items-center justify-center text-canvas shadow-sm group-hover:scale-105 transition-transform border border-white/20 shrink-0">
+            <span class="font-display font-black text-xs sm:text-sm tracking-tight leading-none text-sage-300">S5</span>
           </div>
-          <div>
-            <span class="font-display font-extrabold text-base md:text-lg tracking-tight text-ink uppercase group-hover:text-sage-600 transition-colors">
+          <div class="truncate">
+            <span class="font-display font-extrabold text-xs sm:text-base md:text-lg tracking-tight text-ink uppercase group-hover:text-sage-600 transition-colors block truncate">
               SEMESTER 5 AVASARALU
             </span>
-            <span class="block text-[10px] tracking-widest uppercase font-semibold text-ink-muted">AIML Study Library</span>
+            <span class="block text-[9px] sm:text-[10px] tracking-widest uppercase font-semibold text-ink-muted truncate">AIML Study Library</span>
           </div>
         </a>
 
@@ -139,9 +144,9 @@
         </div>
 
         <!-- Right Side: Search & CTA -->
-        <div class="flex items-center gap-3">
-          <button onclick="openSearchModalDirect()" class="p-2.5 rounded-full hover:bg-canvasMuted text-ink transition-all" title="Search Library" aria-label="Search">
-            <i data-lucide="search" class="w-4 h-4"></i>
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+          <button onclick="openSearchModalDirect()" class="p-2 sm:p-2.5 rounded-full hover:bg-canvasMuted text-ink transition-all" title="Search Library" aria-label="Search">
+            <i data-lucide="search" class="w-4 h-4 sm:w-4 sm:h-4"></i>
           </button>
 
           <button onclick="navGoToSubjects(event)" 
@@ -164,7 +169,7 @@
     <div id="mobile-s5-backdrop" onclick="toggleMobileS5Menu(false)" class="hidden fixed inset-0 z-40 bg-ink/30 backdrop-blur-xs transition-opacity"></div>
 
     <!-- Floating Popover Navigation Panel (Opens above S5 FAB) -->
-    <div id="mobile-s5-menu" class="hidden fixed bottom-24 right-5 z-50 bg-canvas/95 backdrop-blur-xl border border-ink-border rounded-3xl p-2.5 shadow-2xl w-56 space-y-1 transform transition-all duration-200 origin-bottom-right">
+    <div id="mobile-s5-menu" class="hidden fixed bottom-24 right-4 z-50 bg-canvas/95 backdrop-blur-xl border border-ink-border rounded-3xl p-2.5 shadow-2xl w-52 space-y-1 transform transition-all duration-200 origin-bottom-right">
       <div class="px-3 py-1.5 border-b border-ink-border/50 flex items-center justify-between mb-1">
         <span class="text-[10px] font-bold uppercase tracking-widest text-ink-muted">Quick Navigation</span>
         <span class="w-2 h-2 rounded-full bg-sage-600 animate-pulse"></span>
@@ -208,7 +213,7 @@
 
     <!-- Floating S5 Trigger Button (Bottom-Right) -->
     <button id="mobile-s5-fab" onclick="toggleMobileS5Menu()" 
-            class="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full bg-ink text-canvas border border-white/20 shadow-2xl flex items-center justify-center font-display font-black text-base active:scale-90 hover:scale-105 transition-transform" 
+            class="fixed bottom-6 right-4 z-50 w-13 h-13 p-3.5 rounded-full bg-ink text-canvas border border-white/20 shadow-2xl flex items-center justify-center font-display font-black text-sm active:scale-90 hover:scale-105 transition-transform" 
             aria-label="Open Navigation">
       <span class="text-sage-300 leading-none">S5</span>
     </button>
@@ -218,44 +223,44 @@
   <!-- ========================================================== -->
   <!-- EDITORIAL HERO SECTION -->
   <!-- ========================================================== -->
-  <section id="home" class="relative pt-12 pb-20 md:pt-20 md:pb-28 overflow-hidden">
+  <section id="home" class="relative pt-8 pb-14 sm:pt-16 sm:pb-24 md:pt-20 md:pb-28 overflow-hidden w-full">
     <div class="absolute inset-0 bg-grid-pattern pointer-events-none"></div>
 
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative w-full">
       
-      <div class="max-w-4xl mx-auto text-center">
+      <div class="max-w-4xl mx-auto text-center w-full">
         
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <span class="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-sage-200 text-sage-900 border border-sage-300">
+        <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2 mb-4 sm:mb-6">
+          <span class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest bg-sage-200 text-sage-900 border border-sage-300">
             AIML Study Library
           </span>
-          <span class="px-3.5 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-canvasMuted text-ink-secondary border border-ink-border">
+          <span class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest bg-canvasMuted text-ink-secondary border border-ink-border">
             SEMESTER 5 • MID-1 • SYLLABUS
           </span>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight text-ink uppercase leading-[1.02]">
+        <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-display font-extrabold tracking-tight text-ink uppercase leading-tight sm:leading-[1.02] break-words">
           SEMESTER–5 <br class="hidden sm:inline">
           <span class="font-serif italic font-normal tracking-normal lowercase text-sage-600">avasaralu</span>
         </h1>
 
-        <p class="mt-4 text-base sm:text-xl font-medium text-ink-secondary max-w-xl mx-auto leading-relaxed">
+        <p class="mt-3 sm:mt-4 text-sm sm:text-lg md:text-xl font-medium text-ink-secondary max-w-xl mx-auto leading-relaxed px-2 break-words">
           AIML Students Kosam Study Preparation Easy Ga.
         </p>
 
-        <p class="mt-2 text-xs sm:text-sm text-ink-muted max-w-lg mx-auto leading-relaxed font-serif italic">
+        <p class="mt-1.5 sm:mt-2 text-xs sm:text-sm text-ink-muted max-w-lg mx-auto leading-relaxed font-serif italic px-2 break-words">
           “Subject select chesko → Material type choose chesko → PDF open chesi study start cheyyi.”
         </p>
 
-        <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+        <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 w-full max-w-xs sm:max-w-none mx-auto px-2 sm:px-0">
           <button onclick="navGoToSubjects(event)" 
-                  class="px-8 py-3.5 rounded-full bg-ink text-canvas font-display font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-sage-600 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2.5">
+                  class="w-full sm:w-auto px-6 sm:px-8 py-3.5 rounded-full bg-ink text-canvas font-display font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-sage-600 hover:shadow-lg active:scale-95 transition-all flex items-center justify-center gap-2">
             <span>Browse All Subjects</span>
             <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
           </button>
 
           <button onclick="openSyllabusViewer()" 
-                  class="px-7 py-3.5 rounded-full bg-sage-100 text-sage-900 border border-sage-300 font-display font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-sage-200 hover:-translate-y-0.5 active:translate-y-0 transition-all flex items-center gap-2">
+                  class="w-full sm:w-auto px-6 sm:px-7 py-3.5 rounded-full bg-sage-100 text-sage-900 border border-sage-300 font-display font-bold text-xs sm:text-sm uppercase tracking-wider hover:bg-sage-200 active:scale-95 transition-all flex items-center justify-center gap-2">
             <i data-lucide="book-open" class="w-4 h-4 text-sage-700"></i>
             <span>S5 Syllabus Book (8P)</span>
           </button>
@@ -270,18 +275,18 @@
   <!-- ========================================================== -->
   <!-- OFFICIAL SYLLABUS SHOWCASE SECTION -->
   <!-- ========================================================== -->
-  <section id="syllabus-section" class="py-14 bg-sage-50 border-y border-sage-200/90">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="rounded-[2.5rem] bg-white border border-sage-300 p-8 sm:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
+  <section id="syllabus-section" class="py-10 sm:py-14 bg-sage-50 border-y border-sage-200/90 overflow-hidden w-full">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="rounded-3xl md:rounded-[2.5rem] bg-white border border-sage-300 p-5 sm:p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm w-full">
         
-        <div class="max-w-2xl space-y-2">
-          <div class="flex items-center gap-2">
+        <div class="max-w-2xl space-y-2 w-full">
+          <div class="flex items-center gap-2 flex-wrap">
             <span class="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sage-200 text-sage-900 border border-sage-300">
               Official Semester 5 Syllabus
             </span>
             <span class="text-[11px] font-semibold text-ink-muted">8 Pages &bull; 39 KB</span>
           </div>
-          <h3 class="text-2xl sm:text-3xl font-display font-extrabold text-ink leading-tight">
+          <h3 class="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-ink leading-snug sm:leading-tight break-words">
             Semester 5 Selected AIML Official Syllabus
           </h3>
           <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed">
@@ -289,13 +294,13 @@
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-3 shrink-0">
-          <button onclick="openSyllabusViewer()" class="px-6 py-3.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3 shrink-0 w-full md:w-auto">
+          <button onclick="openSyllabusViewer()" class="w-full sm:w-auto px-6 py-3.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center justify-center gap-2">
             <i data-lucide="eye" class="w-4 h-4"></i>
             <span>Read S5 Syllabus</span>
           </button>
           
-          <a href="pdfs/syllabus/Semester_5_Selected_AIML_Syllabus.pdf" download class="px-5 py-3.5 rounded-full bg-canvasMuted hover:bg-ink hover:text-white text-ink text-xs font-bold uppercase tracking-wider border border-ink-border transition-all flex items-center gap-2">
+          <a href="pdfs/syllabus/Semester_5_Selected_AIML_Syllabus.pdf" download class="w-full sm:w-auto px-5 py-3.5 rounded-full bg-canvasMuted hover:bg-ink hover:text-white text-ink text-xs font-bold uppercase tracking-wider border border-ink-border transition-all flex items-center justify-center gap-2 text-center">
             <i data-lucide="download" class="w-4 h-4"></i>
             <span>Download PDF ↓</span>
           </a>
@@ -309,28 +314,28 @@
   <!-- ========================================================== -->
   <!-- QUICK STATS -->
   <!-- ========================================================== -->
-  <section class="py-10 border-b border-ink-border/70 bg-white">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/60">
+  <section class="py-8 sm:py-10 border-b border-ink-border/70 bg-white w-full overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/60">
         
-        <div class="pt-4 md:pt-0 md:px-4">
-          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">09</p>
-          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Unit Notes</p>
+        <div class="pt-3 md:pt-0 md:px-4">
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">09</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Unit Notes</p>
         </div>
 
-        <div class="pt-4 md:pt-0 md:px-4">
-          <p class="text-4xl sm:text-5xl font-display font-extrabold text-sage-600 tracking-tight">SEM-5</p>
-          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Active Semester</p>
+        <div class="pt-3 md:pt-0 md:px-4">
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-sage-600 tracking-tight">SEM-5</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Active Semester</p>
         </div>
 
-        <div class="pt-4 md:pt-0 md:px-4">
-          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">08P</p>
-          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">S5 Syllabus Book</p>
+        <div class="pt-3 md:pt-0 md:px-4">
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">08P</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">S5 Syllabus Book</p>
         </div>
 
-        <div class="pt-4 md:pt-0 md:px-4">
-          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">FREE</p>
-          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Organized Library</p>
+        <div class="pt-3 md:pt-0 md:px-4">
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">FREE</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Study Library</p>
         </div>
 
       </div>
@@ -341,18 +346,18 @@
   <!-- ========================================================== -->
   <!-- MAIN STUDY BROWSER / ACTIVE SECTION -->
   <!-- ========================================================== -->
-  <section id="study-browser" class="py-20 bg-canvas border-t border-ink-border">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <section id="study-browser" class="py-12 sm:py-20 bg-canvas border-t border-ink-border w-full overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 mb-12 pb-6 border-b border-ink-border">
-        <div>
-          <div id="breadcrumb-container" class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1">
+      <div class="flex flex-col md:flex-row items-start md:items-end justify-between gap-4 sm:gap-6 mb-8 sm:mb-12 pb-5 sm:pb-6 border-b border-ink-border w-full">
+        <div class="w-full md:w-auto">
+          <div id="breadcrumb-container" class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-ink-muted mb-1 flex-wrap">
             <span class="hover:text-ink cursor-pointer" onclick="navGoHome(event)">Home</span>
             <span>/</span>
             <span id="breadcrumb-current" class="text-ink font-bold">Semester 5 Subjects</span>
           </div>
-          <h2 id="view-title" class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-ink uppercase">
+          <h2 id="view-title" class="text-2xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-ink uppercase break-words">
             Semester 5 Subjects
           </h2>
           <p id="view-desc" class="text-xs sm:text-sm text-ink-secondary mt-1 font-serif italic">
@@ -361,24 +366,24 @@
         </div>
 
         <!-- Mode Buttons (Semester 5, Mid-1, Mid-2) -->
-        <div class="flex items-center p-1.5 bg-canvasMuted rounded-full">
+        <div class="flex items-center p-1 bg-canvasMuted rounded-full shrink-0 w-full sm:w-auto justify-center sm:justify-start">
           <button id="tab-btn-semester-5" onclick="navGoToStudyType('semester-5')" 
-                  class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-ink text-canvas shadow-sm">
+                  class="px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-ink text-canvas shadow-sm">
             Semester 5
           </button>
           <button id="tab-btn-mid-1" onclick="navGoToStudyType('mid-1')" 
-                  class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all font-bold">
+                  class="px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all font-bold">
             Mid-1
           </button>
           <button id="tab-btn-mid-2" onclick="navGoToStudyType('mid-2')" 
-                  class="px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all">
+                  class="px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all">
             Mid-2
           </button>
         </div>
       </div>
 
       <!-- Dynamic Categorized Materials Area -->
-      <div id="main-content-area">
+      <div id="main-content-area" class="w-full">
         <!-- Rendered by JavaScript -->
       </div>
 
@@ -386,26 +391,23 @@
   </section>
 
 
-
-
-
   <!-- ========================================================== -->
   <!-- SEARCH RESULTS MODAL -->
   <!-- ========================================================== -->
-  <div id="search-modal" class="fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm hidden flex items-start justify-center pt-24 px-4">
-    <div class="bg-canvas rounded-[2rem] w-full max-w-2xl shadow-2xl border border-ink-border overflow-hidden animate-in fade-in zoom-in-95 duration-150">
+  <div id="search-modal" class="fixed inset-0 z-50 bg-ink/70 backdrop-blur-sm hidden flex items-start justify-center pt-16 sm:pt-24 px-3 sm:px-4">
+    <div class="bg-canvas rounded-3xl md:rounded-[2rem] w-full max-w-2xl shadow-2xl border border-ink-border overflow-hidden animate-in fade-in zoom-in-95 duration-150">
       
-      <div class="p-5 border-b border-ink-border flex items-center gap-3">
-        <i data-lucide="search" class="w-5 h-5 text-sage-700"></i>
-        <input type="text" id="modal-search-input" placeholder="Search topics (e.g., Syllabus, Semester 5, PCA, CRC, Gantt, Semaphores)..." 
+      <div class="p-4 sm:p-5 border-b border-ink-border flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-sage-700 shrink-0"></i>
+        <input type="text" id="modal-search-input" placeholder="Search topics (e.g., Syllabus, Semester 5, PCA, CRC, Gantt)..." 
                oninput="handleSearch(this.value)"
-               class="w-full text-base font-medium text-ink placeholder-ink-muted outline-none bg-transparent">
-        <button onclick="closeSearchModal()" class="p-2 rounded-full text-ink-muted hover:text-ink hover:bg-canvasMuted">
+               class="w-full text-sm sm:text-base font-medium text-ink placeholder-ink-muted outline-none bg-transparent">
+        <button onclick="closeSearchModal()" class="p-1.5 sm:p-2 rounded-full text-ink-muted hover:text-ink hover:bg-canvasMuted shrink-0">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
 
-      <div id="search-results-list" class="max-h-96 overflow-y-auto p-5 space-y-3">
+      <div id="search-results-list" class="max-h-80 sm:max-h-96 overflow-y-auto p-4 sm:p-5 space-y-3">
         <!-- Search items injected here -->
       </div>
 
@@ -417,34 +419,34 @@
   <!-- BUILT-IN FULLSCREEN PDF VIEWER MODAL -->
   <!-- ========================================================== -->
   <div id="pdf-viewer-modal" class="fixed inset-0 z-50 bg-ink/90 backdrop-blur-md hidden flex flex-col">
-    <div class="bg-footerBg border-b border-white/10 px-5 py-4 flex items-center justify-between text-canvas shrink-0">
-      <div class="flex items-center gap-3 truncate pr-4">
-        <div class="w-9 h-9 rounded-full bg-sage-600 flex items-center justify-center shrink-0 font-display font-black text-xs text-canvas">
+    <div class="bg-footerBg border-b border-white/10 px-4 sm:px-5 py-3 sm:py-4 flex items-center justify-between text-canvas shrink-0">
+      <div class="flex items-center gap-2.5 sm:gap-3 truncate pr-3">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sage-600 flex items-center justify-center shrink-0 font-display font-black text-xs text-canvas">
           S5
         </div>
         <div class="truncate">
-          <h4 id="viewer-title" class="font-display font-bold text-sm sm:text-base truncate">PDF Document</h4>
-          <p id="viewer-subtitle" class="text-xs text-canvas/60 truncate font-serif italic">Study Material</p>
+          <h4 id="viewer-title" class="font-display font-bold text-xs sm:text-base truncate">PDF Document</h4>
+          <p id="viewer-subtitle" class="text-[10px] sm:text-xs text-canvas/60 truncate font-serif italic">Study Material</p>
         </div>
       </div>
 
-      <div class="flex items-center gap-2 shrink-0">
-        <a id="viewer-download-btn" href="#" download class="px-4 py-2 rounded-full bg-sage-600 hover:bg-sage-700 text-xs font-bold uppercase tracking-wider text-canvas flex items-center gap-1.5 transition-all">
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <a id="viewer-download-btn" href="#" download class="px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-sage-600 hover:bg-sage-700 text-xs font-bold uppercase tracking-wider text-canvas flex items-center gap-1.5 transition-all">
           <i data-lucide="download" class="w-3.5 h-3.5"></i>
           <span class="hidden sm:inline">Download</span>
         </a>
         
-        <a id="viewer-newtab-btn" href="#" target="_blank" class="p-2.5 rounded-full text-canvas/70 hover:text-white hover:bg-white/10" title="Open in New Tab">
+        <a id="viewer-newtab-btn" href="#" target="_blank" class="p-2 sm:p-2.5 rounded-full text-canvas/70 hover:text-white hover:bg-white/10" title="Open in New Tab">
           <i data-lucide="external-link" class="w-4 h-4"></i>
         </a>
 
-        <button onclick="closePdfViewer()" class="p-2.5 rounded-full text-canvas/70 hover:text-white hover:bg-white/10" aria-label="Close Viewer">
+        <button onclick="closePdfViewer()" class="p-2 sm:p-2.5 rounded-full text-canvas/70 hover:text-white hover:bg-white/10" aria-label="Close Viewer">
           <i data-lucide="x" class="w-5 h-5"></i>
         </button>
       </div>
     </div>
 
-    <div class="flex-grow bg-footerBg flex items-center justify-center relative">
+    <div class="flex-grow bg-footerBg flex items-center justify-center relative w-full h-full">
       <iframe id="pdf-frame" src="" class="w-full h-full border-none"></iframe>
     </div>
   </div>
@@ -453,17 +455,17 @@
   <!-- ========================================================== -->
   <!-- EDITORIAL DARK FOOTER (#111511) -->
   <!-- ========================================================== -->
-  <footer class="bg-footerBg text-canvas border-t border-white/10 mt-auto py-16 md:py-24">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <footer class="bg-footerBg text-canvas border-t border-white/10 mt-auto py-12 sm:py-16 md:py-24 w-full overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
       
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-16 border-b border-white/10">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 sm:gap-10 pb-12 sm:pb-16 border-b border-white/10">
         
-        <div class="md:col-span-6 space-y-4">
+        <div class="md:col-span-6 space-y-3 sm:space-y-4">
           <div class="flex items-center gap-3">
-            <div class="w-9 h-9 rounded-full bg-sage-600 flex items-center justify-center text-canvas border border-white/20">
+            <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-sage-600 flex items-center justify-center text-canvas border border-white/20 shrink-0">
               <span class="font-display font-black text-xs text-white">S5</span>
             </div>
-            <span class="font-display font-extrabold text-xl tracking-tight uppercase">SEMESTER 5 AVASARALU</span>
+            <span class="font-display font-extrabold text-lg sm:text-xl tracking-tight uppercase">SEMESTER 5 AVASARALU</span>
           </div>
           <p class="text-xs sm:text-sm text-canvas/70 max-w-sm leading-relaxed font-serif italic">
             AIML Students Kosam Study PDF Library &bull; Study easy ga cheyyadaniki create chesina student resource platform.
@@ -474,8 +476,8 @@
           </div>
         </div>
 
-        <div class="md:col-span-6 flex flex-wrap items-start justify-start md:justify-end gap-8 text-xs font-bold uppercase tracking-widest text-canvas/80">
-          <div class="space-y-3">
+        <div class="md:col-span-6 flex flex-wrap items-start justify-start md:justify-end gap-6 sm:gap-8 text-xs font-bold uppercase tracking-widest text-canvas/80">
+          <div class="space-y-2.5 sm:space-y-3">
             <p class="text-sage-300 text-[10px]">Academic</p>
             <p><button onclick="navGoToSyllabus(event)" class="hover:text-white transition-colors">1. Syllabus</button></p>
             <p><button onclick="navGoToSubjects(event)" class="hover:text-white transition-colors">2. Subjects</button></p>
@@ -484,7 +486,7 @@
             <p><button onclick="navGoToStudyType('semester-5')" class="hover:text-white transition-colors text-sage-300">5. Semester</button></p>
           </div>
 
-          <div class="space-y-3">
+          <div class="space-y-2.5 sm:space-y-3">
             <p class="text-sage-300 text-[10px]">Resources</p>
             <p><button onclick="openSyllabusViewer()" class="hover:text-white transition-colors text-sage-300">S5 Syllabus (8P)</button></p>
             <p><button onclick="navGoToSubjects(event)" class="hover:text-white transition-colors">Subjects List</button></p>
@@ -494,12 +496,12 @@
 
       </div>
 
-      <div class="pt-10 flex flex-col sm:flex-row items-center justify-between text-xs text-canvas/50 gap-4">
+      <div class="pt-8 sm:pt-10 flex flex-col sm:flex-row items-center justify-between text-xs text-canvas/50 gap-4 text-center sm:text-left">
         <p>&copy; 2026 SEMESTER 5 AVASARALU &bull; Curated Study Library for AIML Students.</p>
         
-        <div class="text-sm font-display font-bold text-canvas bg-white/5 px-6 py-2.5 rounded-full border border-white/10 shadow-sm flex items-center gap-1.5">
+        <div class="text-xs sm:text-sm font-display font-bold text-canvas bg-white/5 px-5 sm:px-6 py-2 sm:py-2.5 rounded-full border border-white/10 shadow-sm flex items-center gap-1.5">
           <span>Built with</span>
-          <span style="color:#ef4444; font-size:1.4em; line-height:1; vertical-align:-2px; margin:0 3px;">♥</span>
+          <span style="color:#ef4444; font-size:1.3em; line-height:1; vertical-align:-2px; margin:0 2px;">♥</span>
           <span>by</span>
           <span class="text-sage-300 font-extrabold tracking-wide">Hafi</span>
           <span>and</span>
@@ -648,7 +650,6 @@
       scrollToElement('study-browser');
     }
 
-
     function selectSubject(subjectId) {
       selectedSubjectId = subjectId;
       selectedCategoryFilter = 'all';
@@ -695,9 +696,9 @@
         const btn = document.getElementById('tab-btn-' + t);
         if (btn) {
           if (currentStudyType === t) {
-            btn.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-ink text-canvas shadow-sm";
+            btn.className = "px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-all bg-ink text-canvas shadow-sm";
           } else {
-            btn.className = "px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all font-bold";
+            btn.className = "px-4 sm:px-5 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-ink-secondary hover:text-ink transition-all font-bold";
           }
         }
       });
@@ -715,22 +716,22 @@
         const sem5Subjects = STUDY_DATABASE.subjects;
 
         let sem5Html = `
-          <div class="mb-10 p-6 rounded-[2rem] bg-sage-100 border border-sage-200 flex flex-wrap items-center justify-between gap-4">
+          <div class="mb-6 sm:mb-10 p-5 sm:p-6 rounded-3xl md:rounded-[2rem] bg-sage-100 border border-sage-200 flex flex-wrap items-center justify-between gap-4">
             <div>
               <span class="text-[10px] font-bold uppercase tracking-widest text-sage-900 bg-sage-200 px-3 py-0.5 rounded-full border border-sage-300">
                 Official Syllabus Subjects (MIC23)
               </span>
-              <h3 class="text-xl font-display font-bold text-ink mt-1">B.Tech AIML &bull; Semester 5 Course Curriculum</h3>
+              <h3 class="text-lg sm:text-xl font-display font-bold text-ink mt-1">B.Tech AIML &bull; Semester 5 Course Curriculum</h3>
               <p class="text-xs text-ink-secondary mt-0.5">Syllabus lo unna core subjects & practical labs anni ikkade unnai.</p>
             </div>
 
-            <button onclick="openSyllabusViewer()" class="px-5 py-2.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center gap-1.5">
+            <button onclick="openSyllabusViewer()" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center justify-center gap-1.5">
               <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
               <span>View S5 Syllabus (8P)</span>
             </button>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         `;
 
         sem5Subjects.forEach(sub => {
@@ -738,10 +739,10 @@
           const subPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === sub.id);
 
           sem5Html += `
-            <div class="bg-white rounded-[2.5rem] p-8 border ${hasNotes ? 'border-sage-400 shadow-md hover:border-sage-600 ring-1 ring-sage-200' : 'border-ink-border'} hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div class="bg-white rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 border ${hasNotes ? 'border-sage-400 shadow-md hover:border-sage-600 ring-1 ring-sage-200' : 'border-ink-border'} hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div class="flex items-center justify-between mb-4">
-                  <span class="text-xs font-bold uppercase tracking-widest ${hasNotes ? 'text-sage-900 bg-sage-200 border border-sage-300 font-extrabold' : 'text-ink-muted bg-canvasMuted'} px-3 py-1 rounded-full">
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
+                  <span class="text-[11px] sm:text-xs font-bold uppercase tracking-widest ${hasNotes ? 'text-sage-900 bg-sage-200 border border-sage-300 font-extrabold' : 'text-ink-muted bg-canvasMuted'} px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full">
                     ${sub.code} &bull; ${sub.credits} Credits
                   </span>
                   
@@ -757,18 +758,18 @@
                   `}
                 </div>
 
-                <h3 class="text-2xl font-display font-bold text-ink group-hover:text-sage-600 transition-colors">
+                <h3 class="text-xl sm:text-2xl font-display font-bold text-ink group-hover:text-sage-600 transition-colors">
                   ${sub.name}
                 </h3>
                 <p class="text-[11px] text-sage-800 font-bold uppercase tracking-wider mt-0.5">${sub.category}</p>
                 <p class="text-xs text-ink-muted font-semibold mt-1">${sub.tagline}</p>
-                <p class="text-xs text-ink-secondary mt-3 line-clamp-3 leading-relaxed">${sub.desc}</p>
+                <p class="text-xs text-ink-secondary mt-2.5 sm:mt-3 line-clamp-3 leading-relaxed">${sub.desc}</p>
               </div>
 
-              <div class="mt-8 pt-4 border-t border-canvasMuted">
+              <div class="mt-6 sm:mt-8 pt-4 border-t border-canvasMuted">
                 ${hasNotes ? `
                   <button onclick="selectSubject('${sub.id}')" 
-                          class="w-full py-3 px-5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all group-hover:scale-[1.02]">
+                          class="w-full py-3 px-4 sm:px-5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 shadow-md hover:shadow-lg active:scale-95 transition-all">
                     <span>Browse Notes & Materials</span>
                     <i data-lucide="arrow-right" class="w-4 h-4"></i>
                   </button>
@@ -803,19 +804,19 @@
         viewDesc.innerText = "“Mid-2 exams preparation kosam unit-wise PDFs soon upload chestam.”";
 
         container.innerHTML = `
-          <div class="p-12 sm:p-16 text-center bg-white rounded-[2.5rem] border border-ink-border max-w-2xl mx-auto shadow-sm">
-            <div class="w-16 h-16 rounded-full bg-canvasMuted text-ink flex items-center justify-center mx-auto mb-4">
-              <i data-lucide="clock" class="w-8 h-8"></i>
+          <div class="p-8 sm:p-16 text-center bg-white rounded-3xl md:rounded-[2.5rem] border border-ink-border max-w-2xl mx-auto shadow-sm">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-canvasMuted text-ink flex items-center justify-center mx-auto mb-4">
+              <i data-lucide="clock" class="w-7 h-7 sm:w-8 sm:h-8"></i>
             </div>
             <span class="inline-block px-3.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-canvasMuted text-ink mb-3">
               Coming Soon
             </span>
-            <h3 class="text-2xl sm:text-3xl font-display font-bold text-ink">Mid-2 Preparation Notes</h3>
+            <h3 class="text-xl sm:text-3xl font-display font-bold text-ink">Mid-2 Preparation Notes</h3>
             <p class="text-xs sm:text-sm text-ink-secondary mt-2 max-w-md mx-auto leading-relaxed">
               Mid-2 syllabus study PDFs inka add cheyyaledu. Soon upload chestam.
             </p>
-            <div class="mt-8">
-              <button onclick="navGoToSubjects(event)" class="px-7 py-3.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider hover:bg-sage-600 transition-all">
+            <div class="mt-6 sm:mt-8">
+              <button onclick="navGoToSubjects(event)" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider hover:bg-sage-600 transition-all">
                 &larr; Browse Semester 5 Subjects (Available Now)
               </button>
             </div>
@@ -871,34 +872,34 @@
         ];
 
         let subjectContentHtml = `
-          <div class="mb-10 p-6 rounded-[2rem] bg-sage-100 border border-sage-200 flex flex-wrap items-center justify-between gap-4">
+          <div class="mb-6 sm:mb-10 p-4 sm:p-6 rounded-3xl md:rounded-[2rem] bg-sage-100 border border-sage-200 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
             <div class="flex items-center gap-3">
-              <button onclick="backToSubjects()" class="py-2 px-4 rounded-full bg-white hover:bg-canvas text-ink shadow-sm border border-ink-border text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all">
+              <button onclick="backToSubjects()" class="py-2 px-3.5 sm:px-4 rounded-full bg-white hover:bg-canvas text-ink shadow-sm border border-ink-border text-xs font-bold uppercase tracking-wider flex items-center gap-1.5 transition-all">
                 <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                 <span>All Subjects</span>
               </button>
-              <span class="text-xs font-bold uppercase tracking-wider text-sage-900">${allSubjectPdfs.length} PDFs Cataloged</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-sage-900">${allSubjectPdfs.length} PDFs</span>
             </div>
 
-            <div class="flex items-center gap-2">
-              <button onclick="openSyllabusViewer()" class="px-4 py-2 rounded-full bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center gap-1.5">
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <button onclick="openSyllabusViewer()" class="w-full sm:w-auto px-4 py-2 rounded-full bg-white hover:bg-sage-50 text-sage-900 border border-sage-300 text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-1.5">
                 <i data-lucide="book-open" class="w-3.5 h-3.5 text-sage-700"></i>
                 <span>S5 Syllabus (8P)</span>
               </button>
 
               ${subject.zipUrl ? `
-                <a href="${subject.zipUrl}" download class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all">
+                <a href="${subject.zipUrl}" download class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 sm:px-5 py-2.5 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all text-center">
                   <i data-lucide="archive" class="w-3.5 h-3.5"></i>
-                  <span>Download Subject ZIP [${subject.zipSize}]</span>
+                  <span>ZIP [${subject.zipSize}]</span>
                 </a>
               ` : ''}
             </div>
           </div>
 
-          <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-10 text-xs font-bold uppercase tracking-wider">
+          <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 sm:mb-10 text-xs font-bold uppercase tracking-wider">
             <button onclick="filterCategory('all')" 
-                    class="px-4 py-2 rounded-full whitespace-nowrap transition-all ${selectedCategoryFilter === 'all' ? 'bg-ink text-canvas shadow-sm' : 'bg-white text-ink-secondary border border-ink-border hover:bg-canvasMuted'}">
-              All Materials (${allSubjectPdfs.length})
+                    class="px-4 py-2 rounded-full whitespace-nowrap transition-all shrink-0 ${selectedCategoryFilter === 'all' ? 'bg-ink text-canvas shadow-sm' : 'bg-white text-ink-secondary border border-ink-border hover:bg-canvasMuted'}">
+              All (${allSubjectPdfs.length})
             </button>
             ${categories.map(cat => {
               const count = allSubjectPdfs.filter(p => p.materialType === cat.id).length;
@@ -906,14 +907,14 @@
               const isSel = selectedCategoryFilter === cat.id;
               return `
                 <button onclick="filterCategory('${cat.id}')" 
-                        class="px-4 py-2 rounded-full whitespace-nowrap transition-all ${isSel ? 'bg-ink text-canvas shadow-sm' : 'bg-white text-ink-secondary border border-ink-border hover:bg-canvasMuted'}">
+                        class="px-4 py-2 rounded-full whitespace-nowrap transition-all shrink-0 ${isSel ? 'bg-ink text-canvas shadow-sm' : 'bg-white text-ink-secondary border border-ink-border hover:bg-canvasMuted'}">
                   ${cat.title} (${count})
                 </button>
               `;
             }).join('')}
           </div>
 
-          <div class="space-y-16">
+          <div class="space-y-10 sm:space-y-16">
         `;
 
         categories.forEach(cat => {
@@ -928,13 +929,13 @@
           }
 
           subjectContentHtml += `
-            <div class="space-y-6">
-              <div class="flex items-center justify-between pb-3 border-b border-ink-border/80">
-                <div class="flex items-center gap-3">
-                  <h3 class="text-xl sm:text-2xl font-display font-bold text-ink uppercase tracking-tight">
+            <div class="space-y-4 sm:space-y-6">
+              <div class="flex flex-wrap items-center justify-between pb-2 sm:pb-3 border-b border-ink-border/80 gap-2">
+                <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+                  <h3 class="text-lg sm:text-2xl font-display font-bold text-ink uppercase tracking-tight">
                     ${cat.title}
                   </h3>
-                  <span class="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sage-200 text-sage-900 border border-sage-300">
+                  <span class="px-2.5 sm:px-3 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-sage-200 text-sage-900 border border-sage-300">
                     ${cat.badge}
                   </span>
                 </div>
@@ -944,55 +945,55 @@
 
           if (catPdfs.length === 0) {
             subjectContentHtml += `
-              <div class="p-8 text-center bg-white rounded-3xl border border-ink-border text-ink-muted text-xs">
+              <div class="p-6 sm:p-8 text-center bg-white rounded-3xl border border-ink-border text-ink-muted text-xs">
                 <p class="font-bold text-ink text-sm">PDF Soon Add Chestam</p>
                 <p class="mt-1 font-serif italic">Ee category study material inka add cheyyaledu.</p>
               </div>
             `;
           } else {
-            subjectContentHtml += `<div class="grid grid-cols-1 md:grid-cols-3 gap-6">`;
+            subjectContentHtml += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">`;
             
             catPdfs.forEach(pdf => {
               subjectContentHtml += `
-                <div class="bg-white rounded-[2rem] p-7 border border-ink-border hover:border-sage-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                <div class="bg-white rounded-3xl md:rounded-[2rem] p-5 sm:p-7 border border-ink-border hover:border-sage-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
                   <div>
-                    <div class="flex items-center justify-between mb-3.5">
-                      <span class="text-xl font-display font-extrabold text-ink">
+                    <div class="flex items-center justify-between mb-3">
+                      <span class="text-lg sm:text-xl font-display font-extrabold text-ink">
                         ${pdf.unitNum ? `0${pdf.unitNum}` : 'PDF'}
                       </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sage-100 text-sage-900 border border-sage-200">
+                      <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-sage-100 text-sage-900 border border-sage-200">
                         ${pdf.formatBadge || 'Exam Material'}
                       </span>
                     </div>
 
-                    <h4 class="text-base font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
+                    <h4 class="text-sm sm:text-base font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
                       ${pdf.title}
                     </h4>
                     
-                    <p class="text-xs font-semibold text-ink-muted mt-1 uppercase tracking-wider">
+                    <p class="text-[11px] sm:text-xs font-semibold text-ink-muted mt-1 uppercase tracking-wider">
                       ${pdf.subtitle}
                     </p>
 
-                    <p class="text-xs text-ink-secondary mt-3 line-clamp-3 leading-relaxed">
+                    <p class="text-xs text-ink-secondary mt-2 sm:mt-3 line-clamp-3 leading-relaxed">
                       ${pdf.description}
                     </p>
 
-                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-canvasMuted text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                    <div class="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-canvasMuted text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-ink-muted">
                       <span>${pdf.pageCount}</span>
                       <span>&bull;</span>
                       <span>${pdf.fileSize}</span>
                     </div>
                   </div>
 
-                  <div class="mt-6 pt-4 border-t border-canvasMuted">
+                  <div class="mt-5 sm:mt-6 pt-3 sm:pt-4 border-t border-canvasMuted">
                     <div class="grid grid-cols-2 gap-2">
                       <button onclick="openPdfViewer('${pdf.title}', '${pdf.unitLabel} &bull; ${subject.name}', '${pdf.pdfUrl}')" 
-                              class="w-full py-2.5 px-3 rounded-full bg-canvas hover:bg-sage-100 text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all">
+                              class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-canvas hover:bg-sage-100 text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all">
                         <i data-lucide="eye" class="w-3.5 h-3.5"></i>
                         <span>Read</span>
                       </button>
 
-                      <a href="${pdf.pdfUrl}" download class="w-full py-2.5 px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all">
+                      <a href="${pdf.pdfUrl}" download class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all text-center">
                         <i data-lucide="download" class="w-3.5 h-3.5"></i>
                         <span>Download</span>
                       </a>
@@ -1023,15 +1024,15 @@
         viewTitle.innerText = "Mid-1 Preparation";
         viewDesc.innerText = "“Subject select chesko &rarr; Unit Notes, Important Q&A, and Class PPTs chusko.”";
 
-        let subjectsHtml = `<div class="grid grid-cols-1 md:grid-cols-3 gap-6">`;
+        let subjectsHtml = `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">`;
 
         STUDY_DATABASE.subjects.filter(s => s.studyTypes.includes('mid-1')).forEach(sub => {
           const subPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === sub.id && p.studyType === 'mid-1');
           subjectsHtml += `
             <div onclick="selectSubject('${sub.id}')" 
-                 class="cursor-pointer bg-white rounded-[2.5rem] p-8 border border-sage-300 hover:border-sage-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+                 class="cursor-pointer bg-white rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 border border-sage-300 hover:border-sage-600 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
                   <span class="text-xs font-bold uppercase tracking-widest text-sage-800 bg-sage-100 px-3 py-1 rounded-full">
                     ${sub.code} &bull; ${subPdfs.length} Materials
                   </span>
@@ -1040,16 +1041,16 @@
                   </div>
                 </div>
 
-                <h3 class="text-2xl font-display font-bold text-ink group-hover:text-sage-600 transition-colors">
+                <h3 class="text-xl sm:text-2xl font-display font-bold text-ink group-hover:text-sage-600 transition-colors">
                   ${sub.name}
                 </h3>
                 <p class="text-xs text-ink-muted font-semibold uppercase tracking-wider mt-1">${sub.tagline}</p>
-                <p class="text-xs text-ink-secondary mt-3 line-clamp-2 leading-relaxed">${sub.desc}</p>
+                <p class="text-xs text-ink-secondary mt-2.5 sm:mt-3 line-clamp-2 leading-relaxed">${sub.desc}</p>
               </div>
 
-              <div class="mt-8 pt-4 border-t border-canvasMuted flex items-center justify-between text-xs font-bold uppercase tracking-wider text-ink">
-                <span>Unit Notes &bull; Q&A &bull; PPTs</span>
-                <span class="group-hover:translate-x-1 transition-transform">Browse Notes &rarr;</span>
+              <div class="mt-6 sm:mt-8 pt-4 border-t border-canvasMuted flex items-center justify-between text-xs font-bold uppercase tracking-wider text-ink">
+                <span>Unit Notes &bull; Q&A</span>
+                <span class="group-hover:translate-x-1 transition-transform">Browse &rarr;</span>
               </div>
             </div>
           `;
@@ -1061,7 +1062,6 @@
 
       lucide.createIcons();
     }
-
 
     // Search Engine
     function openSearchModalDirect() {
@@ -1089,18 +1089,18 @@
 
       if (q.includes('syll') || q.includes('curric') || q.includes('mic23') || q.includes('regulat') || q.includes('aiml') || q.includes('sem 5') || q.includes('semester 5')) {
         resultsHtml += `
-          <div class="p-4 rounded-2xl bg-sage-100 border border-sage-300 flex items-center justify-between gap-3 mb-2">
+          <div class="p-3.5 sm:p-4 rounded-2xl bg-sage-100 border border-sage-300 flex items-center justify-between gap-3 mb-2">
             <div class="truncate">
-              <span class="text-[10px] font-bold uppercase tracking-wider text-sage-900 bg-sage-200 px-2 py-0.5 rounded">Official S5 Syllabus &bull; 8 Pages</span>
-              <h5 class="font-display font-bold text-sm text-ink mt-1 truncate">${syl.title}</h5>
-              <p class="text-[11px] text-ink-muted">${syl.regulation}</p>
+              <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-sage-900 bg-sage-200 px-2 py-0.5 rounded">Official S5 Syllabus &bull; 8 Pages</span>
+              <h5 class="font-display font-bold text-xs sm:text-sm text-ink mt-1 truncate">${syl.title}</h5>
+              <p class="text-[10px] sm:text-[11px] text-ink-muted">${syl.regulation}</p>
             </div>
-            <div class="flex items-center gap-2 shrink-0">
+            <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
               <button onclick="closeSearchModal(); openSyllabusViewer();" 
-                      class="px-3.5 py-1.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider">
+                      class="px-3 py-1.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider">
                 Read
               </button>
-              <a href="${syl.pdfUrl}" download class="p-2 rounded-full bg-white text-ink hover:bg-ink hover:text-white transition-colors">
+              <a href="${syl.pdfUrl}" download class="p-1.5 sm:p-2 rounded-full bg-white text-ink hover:bg-ink hover:text-white transition-colors">
                 <i data-lucide="download" class="w-3.5 h-3.5"></i>
               </a>
             </div>
@@ -1120,7 +1120,7 @@
 
       if (results.length === 0 && !resultsHtml) {
         resultsContainer.innerHTML = `
-          <div class="p-8 text-center text-ink-muted text-xs">
+          <div class="p-6 sm:p-8 text-center text-ink-muted text-xs">
             <p class="font-bold text-ink text-sm">Ee search ki matching PDF dorakaledu.</p>
             <p class="mt-1 font-serif italic">Please search by subject, topic or syllabus (e.g., Syllabus, Semester 5, PCA, CRC, Gantt, Semaphores).</p>
           </div>
@@ -1129,18 +1129,18 @@
         results.forEach(res => {
           const sub = STUDY_DATABASE.subjects.find(s => s.id === res.subjectId);
           resultsHtml += `
-            <div class="p-4 rounded-2xl bg-white border border-ink-border hover:border-sage-600 transition-all flex items-center justify-between gap-3">
+            <div class="p-3.5 sm:p-4 rounded-2xl bg-white border border-ink-border hover:border-sage-600 transition-all flex items-center justify-between gap-3">
               <div class="truncate">
-                <span class="text-[10px] font-bold uppercase tracking-wider text-sage-800">${sub.name} &bull; ${res.unitNum ? `Unit 0${res.unitNum}` : res.formatBadge}</span>
-                <h5 class="font-display font-bold text-sm text-ink mt-0.5 truncate">${res.title}</h5>
+                <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider text-sage-800">${sub.name} &bull; ${res.unitNum ? `Unit 0${res.unitNum}` : res.formatBadge}</span>
+                <h5 class="font-display font-bold text-xs sm:text-sm text-ink mt-0.5 truncate">${res.title}</h5>
               </div>
 
-              <div class="flex items-center gap-2 shrink-0">
+              <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
                 <button onclick="closeSearchModal(); openPdfViewer('${res.title}', '${res.unitLabel} &bull; ${sub.name}', '${res.pdfUrl}')" 
-                        class="px-3.5 py-1.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider">
+                        class="px-3 py-1.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider">
                   Read
                 </button>
-                <a href="${res.pdfUrl}" download class="p-2 rounded-full bg-canvasMuted text-ink hover:bg-ink hover:text-canvas transition-colors">
+                <a href="${res.pdfUrl}" download class="p-1.5 sm:p-2 rounded-full bg-canvasMuted text-ink hover:bg-ink hover:text-canvas transition-colors">
                   <i data-lucide="download" class="w-3.5 h-3.5"></i>
                 </a>
               </div>
