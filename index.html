@@ -83,6 +83,19 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
+
+    .glass-overlay-ios {
+      background: rgba(245, 243, 238, 0.80);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+    }
+
+    .glass-card-ios {
+      background: rgba(255, 255, 255, 0.60);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.80);
+    }
   </style>
 </head>
 
@@ -91,7 +104,7 @@
   <!-- ========================================================== -->
   <!-- EDITORIAL NAVBAR -->
   <!-- ========================================================== -->
-  <nav class="sticky top-0 z-40 glass-editorial border-b border-ink-border/70 transition-all duration-300 w-full">
+  <nav class="sticky top-0 z-30 glass-editorial border-b border-ink-border/70 transition-all duration-300 w-full">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-16 sm:h-20">
         
@@ -162,58 +175,124 @@
 
 
   <!-- ========================================================== -->
-  <!-- MOBILE FLOATING S5 NAVIGATION (BOTTOM-RIGHT) -->
+  <!-- MOBILE FLOATING S5 BUTTON & FULL-SCREEN GLASS OVERLAY -->
   <!-- ========================================================== -->
   <div class="md:hidden">
-    <!-- Backdrop overlay for mobile menu -->
-    <div id="mobile-s5-backdrop" onclick="toggleMobileS5Menu(false)" class="hidden fixed inset-0 z-40 bg-ink/30 backdrop-blur-xs transition-opacity"></div>
+    
+    <!-- Full-Screen iPhone-Style Frosted Glass Navigation Overlay -->
+    <div id="mobile-s5-overlay" class="hidden fixed inset-0 z-50 glass-overlay-ios flex flex-col justify-between p-6 sm:p-8 animate-in fade-in zoom-in-95 duration-200 overflow-y-auto">
+      
+      <!-- Top Header inside Glass Overlay -->
+      <div class="flex items-center justify-between pb-6 border-b border-ink-border/40 shrink-0">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-ink flex items-center justify-center text-canvas shadow-md border border-white/20 shrink-0">
+            <span class="font-display font-black text-sm text-sage-300 leading-none">S5</span>
+          </div>
+          <div>
+            <span class="font-display font-extrabold text-sm sm:text-base tracking-tight text-ink uppercase block leading-tight">
+              SEMESTER 5 AVASARALU
+            </span>
+            <span class="block text-[10px] tracking-widest uppercase font-semibold text-ink-muted">AIML Study Library</span>
+          </div>
+        </div>
 
-    <!-- Floating Popover Navigation Panel (Opens above S5 FAB) -->
-    <div id="mobile-s5-menu" class="hidden fixed bottom-24 right-4 z-50 bg-canvas/95 backdrop-blur-xl border border-ink-border rounded-3xl p-2.5 shadow-2xl w-52 space-y-1 transform transition-all duration-200 origin-bottom-right">
-      <div class="px-3 py-1.5 border-b border-ink-border/50 flex items-center justify-between mb-1">
-        <span class="text-[10px] font-bold uppercase tracking-widest text-ink-muted">Quick Navigation</span>
-        <span class="w-2 h-2 rounded-full bg-sage-600 animate-pulse"></span>
+        <!-- Frosted Glass Circular Close Button -->
+        <button onclick="toggleMobileS5Menu(false)" 
+                class="w-10 h-10 rounded-full bg-white/70 hover:bg-white border border-white/90 text-ink shadow-sm flex items-center justify-center active:scale-90 transition-transform" 
+                aria-label="Close Navigation">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
       </div>
 
-      <!-- 1. SYLLABUS -->
-      <button id="mob-nav-btn-syllabus" onclick="navGoToSyllabus(event); toggleMobileS5Menu(false);" 
-              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
-        <span>1. Syllabus</span>
-        <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
-      </button>
+      <!-- Navigation Cards Stack (Frosted Glass Cards) -->
+      <div class="my-auto py-6 space-y-3 max-w-sm mx-auto w-full">
+        <p class="text-[11px] font-bold uppercase tracking-widest text-ink-muted text-center mb-3">Navigation Menu</p>
+        
+        <!-- 1. SYLLABUS -->
+        <button id="mob-nav-btn-syllabus" onclick="navGoToSyllabus(event); toggleMobileS5Menu(false);" 
+                class="w-full text-left p-4 rounded-2xl glass-card-ios shadow-sm transition-all flex items-center justify-between text-ink group active:scale-[0.98]">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-sage-100/90 flex items-center justify-center text-sage-900 border border-sage-200 shrink-0">
+              <i data-lucide="book-open" class="w-4 h-4 text-sage-700"></i>
+            </div>
+            <div>
+              <span class="font-display font-bold text-sm sm:text-base uppercase tracking-wider block">1. Syllabus</span>
+              <span class="text-[10px] text-ink-muted">Official S5 8-Page Syllabus</span>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-muted group-hover:translate-x-1 transition-transform"></i>
+        </button>
 
-      <!-- 2. SUBJECTS -->
-      <button id="mob-nav-btn-subjects" onclick="navGoToSubjects(event); toggleMobileS5Menu(false);" 
-              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
-        <span>2. Subjects</span>
-        <i data-lucide="grid" class="w-3.5 h-3.5"></i>
-      </button>
+        <!-- 2. SUBJECTS -->
+        <button id="mob-nav-btn-subjects" onclick="navGoToSubjects(event); toggleMobileS5Menu(false);" 
+                class="w-full text-left p-4 rounded-2xl glass-card-ios shadow-sm transition-all flex items-center justify-between text-ink group active:scale-[0.98]">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-sage-100/90 flex items-center justify-center text-sage-900 border border-sage-200 shrink-0">
+              <i data-lucide="grid" class="w-4 h-4 text-sage-700"></i>
+            </div>
+            <div>
+              <span class="font-display font-bold text-sm sm:text-base uppercase tracking-wider block">2. Subjects</span>
+              <span class="text-[10px] text-ink-muted">All Core & Lab Courses</span>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-muted group-hover:translate-x-1 transition-transform"></i>
+        </button>
 
-      <!-- 3. MID-1 -->
-      <button id="mob-nav-btn-mid-1" onclick="navGoToStudyType('mid-1'); toggleMobileS5Menu(false);" 
-              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
-        <span>3. Mid-1</span>
-        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
-      </button>
+        <!-- 3. MID-1 -->
+        <button id="mob-nav-btn-mid-1" onclick="navGoToStudyType('mid-1'); toggleMobileS5Menu(false);" 
+                class="w-full text-left p-4 rounded-2xl glass-card-ios shadow-sm transition-all flex items-center justify-between text-ink group active:scale-[0.98]">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-sage-100/90 flex items-center justify-center text-sage-900 border border-sage-200 shrink-0">
+              <i data-lucide="zap" class="w-4 h-4 text-sage-700"></i>
+            </div>
+            <div>
+              <span class="font-display font-bold text-sm sm:text-base uppercase tracking-wider block">3. Mid-1</span>
+              <span class="text-[10px] text-ink-muted">Notes, Important Q&A & PPTs</span>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-muted group-hover:translate-x-1 transition-transform"></i>
+        </button>
 
-      <!-- 4. MID-2 -->
-      <button id="mob-nav-btn-mid-2" onclick="navGoToStudyType('mid-2'); toggleMobileS5Menu(false);" 
-              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
-        <span>4. Mid-2</span>
-        <i data-lucide="clock" class="w-3.5 h-3.5"></i>
-      </button>
+        <!-- 4. MID-2 -->
+        <button id="mob-nav-btn-mid-2" onclick="navGoToStudyType('mid-2'); toggleMobileS5Menu(false);" 
+                class="w-full text-left p-4 rounded-2xl glass-card-ios shadow-sm transition-all flex items-center justify-between text-ink group active:scale-[0.98]">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-sage-100/90 flex items-center justify-center text-sage-900 border border-sage-200 shrink-0">
+              <i data-lucide="clock" class="w-4 h-4 text-sage-700"></i>
+            </div>
+            <div>
+              <span class="font-display font-bold text-sm sm:text-base uppercase tracking-wider block">4. Mid-2</span>
+              <span class="text-[10px] text-ink-muted">Coming Soon Materials</span>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-ink-muted group-hover:translate-x-1 transition-transform"></i>
+        </button>
 
-      <!-- 5. SEMESTER -->
-      <button id="mob-nav-btn-semester" onclick="navGoToStudyType('semester-5'); toggleMobileS5Menu(false);" 
-              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider transition-all bg-sage-200 text-sage-900 border border-sage-300 shadow-sm flex items-center justify-between">
-        <span>5. Semester</span>
-        <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
-      </button>
+        <!-- 5. SEMESTER -->
+        <button id="mob-nav-btn-semester" onclick="navGoToStudyType('semester-5'); toggleMobileS5Menu(false);" 
+                class="w-full text-left p-4 rounded-2xl border border-sage-300 bg-sage-200/90 backdrop-blur-md shadow-md transition-all flex items-center justify-between text-sage-900 font-extrabold group active:scale-[0.98]">
+          <div class="flex items-center gap-3.5">
+            <div class="w-9 h-9 rounded-xl bg-sage-300/80 flex items-center justify-center text-sage-900 border border-sage-300 shrink-0">
+              <i data-lucide="graduation-cap" class="w-4 h-4 text-sage-900"></i>
+            </div>
+            <div>
+              <span class="font-display font-bold text-sm sm:text-base uppercase tracking-wider block">5. Semester</span>
+              <span class="text-[10px] text-sage-800 font-semibold">Semester 5 Main View</span>
+            </div>
+          </div>
+          <i data-lucide="arrow-right" class="w-4 h-4 text-sage-900 group-hover:translate-x-1 transition-transform"></i>
+        </button>
+      </div>
+
+      <!-- Bottom Footer inside Glass Overlay -->
+      <div class="pt-4 border-t border-ink-border/40 text-center text-xs text-ink-muted shrink-0">
+        <p class="font-display font-bold text-ink">Built with ♥ by Hafi and Ranjith</p>
+      </div>
     </div>
 
-    <!-- Floating S5 Trigger Button (Bottom-Right) -->
-    <button id="mobile-s5-fab" onclick="toggleMobileS5Menu()" 
-            class="fixed bottom-6 right-4 z-50 w-13 h-13 p-3.5 rounded-full bg-ink text-canvas border border-white/20 shadow-2xl flex items-center justify-center font-display font-black text-sm active:scale-90 hover:scale-105 transition-transform" 
+    <!-- Floating S5 Trigger Button (Moved slightly UP and LEFT: bottom-24 right-5) -->
+    <button id="mobile-s5-fab" onclick="toggleMobileS5Menu(true)" 
+            class="fixed bottom-22 right-5 sm:bottom-24 sm:right-6 z-40 w-14 h-14 rounded-full bg-ink text-canvas border border-white/25 shadow-[0_10px_25px_rgba(20,34,29,0.35)] flex items-center justify-center font-display font-black text-base active:scale-90 hover:scale-105 transition-all duration-200" 
             aria-label="Open Navigation">
       <span class="text-sage-300 leading-none">S5</span>
     </button>
@@ -576,8 +655,8 @@
       const activeDeskClass = "px-3.5 py-2 rounded-full transition-all duration-200 bg-sage-200 text-sage-900 border border-sage-300 font-extrabold shadow-sm";
       const inactiveDeskClass = "px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent font-bold";
 
-      const activeMobClass = "w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider transition-all bg-sage-200 text-sage-900 border border-sage-300 shadow-sm flex items-center justify-between";
-      const inactiveMobClass = "w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all text-ink-secondary hover:text-ink hover:bg-sage-100/70 flex items-center justify-between";
+      const activeMobClass = "w-full text-left p-4 rounded-2xl border border-sage-300 bg-sage-200/90 backdrop-blur-md shadow-md transition-all flex items-center justify-between text-sage-900 font-extrabold group active:scale-[0.98]";
+      const inactiveMobClass = "w-full text-left p-4 rounded-2xl glass-card-ios shadow-sm transition-all flex items-center justify-between text-ink group active:scale-[0.98]";
 
       const keys = ['syllabus', 'subjects', 'mid-1', 'mid-2', 'semester'];
 
@@ -594,19 +673,20 @@
       });
     }
 
-    // Mobile S5 Popover Toggle Function
+    // Full-Screen Mobile iPhone-Style Glass Menu Toggle Function
     function toggleMobileS5Menu(forceState) {
-      const menu = document.getElementById('mobile-s5-menu');
-      const backdrop = document.getElementById('mobile-s5-backdrop');
-      if (!menu) return;
+      const overlay = document.getElementById('mobile-s5-overlay');
+      if (!overlay) return;
 
-      const shouldOpen = typeof forceState === 'boolean' ? forceState : menu.classList.contains('hidden');
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : overlay.classList.contains('hidden');
       if (shouldOpen) {
-        menu.classList.remove('hidden');
-        if (backdrop) backdrop.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
       } else {
-        menu.classList.add('hidden');
-        if (backdrop) backdrop.classList.add('hidden');
+        overlay.classList.add('hidden');
+        document.body.style.overflow = 'auto';
+        document.documentElement.style.overflow = 'auto';
       }
     }
 
@@ -974,9 +1054,7 @@
                       ${pdf.subtitle}
                     </p>
 
-                    <p class="text-xs text-ink-secondary mt-2 sm:mt-3 line-clamp-3 leading-relaxed">
-                      ${pdf.description}
-                    </p>
+                    <p class="text-xs text-ink-secondary mt-2 sm:mt-3 line-clamp-3 leading-relaxed">${pdf.description}</p>
 
                     <div class="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-canvasMuted text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-ink-muted">
                       <span>${pdf.pageCount}</span>
@@ -1178,6 +1256,7 @@
       if (e.key === 'Escape') {
         closeSearchModal();
         closePdfViewer();
+        toggleMobileS5Menu(false);
       }
     });
   </script>
