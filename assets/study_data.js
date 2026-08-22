@@ -1,8 +1,16 @@
-// SEMESTER 5 AVASARALU — Future-Ready Database with Single Active Semester (Semester 5)
+// SEMESTER 5 AVASARALU — Future-Ready Database with Complete Syllabus Subjects
 // Hierarchy: Study Type -> Subject -> Material Type -> Unit / File
 
 const STUDY_DATABASE = {
   studyTypes: [
+    {
+      id: "semester-5",
+      name: "Semester 5",
+      badge: "Active Semester",
+      desc: "Semester 5 ki sambandhinchina subjects and study material ikkada browse cheskondi.",
+      icon: "graduation-cap",
+      available: true
+    },
     {
       id: "mid-1",
       name: "Mid-1 Preparation",
@@ -18,14 +26,6 @@ const STUDY_DATABASE = {
       desc: "Mid-2 exams preparation kosam unit-wise PDFs soon upload chestam.",
       icon: "file-plus",
       available: false
-    },
-    {
-      id: "semester-5",
-      name: "Semester 5",
-      badge: "Active Semester",
-      desc: "Semester 5 ki sambandhinchina subjects and study material ikkada browse cheskondi.",
-      icon: "graduation-cap",
-      available: true
     }
   ],
 
@@ -61,11 +61,12 @@ const STUDY_DATABASE = {
     pageCount: "8 Pages",
     fileSize: "39 KB",
     uploadDate: "Aug 22, 2026",
-    topics: ["Syllabus", "Semester 5 Syllabus", "MIC23", "AIML Syllabus", "Deep Learning Syllabus", "CN Syllabus", "OS Syllabus"]
+    topics: ["Syllabus", "Semester 5 Syllabus", "MIC23", "AIML Syllabus", "Deep Learning Syllabus", "CN Syllabus", "OS Syllabus", "Full Stack", "Flutter"]
   },
 
-  // 3 Core Active Subjects for Mid-1 & Semester 5
+  // Complete List of Subjects from Official Semester 5 Selected Syllabus
   subjects: [
+    // 1. Deep Learning (Notes Available)
     {
       id: "deep-learning",
       code: "23AM5T01",
@@ -74,15 +75,17 @@ const STUDY_DATABASE = {
       category: "Professional Core (PC)",
       credits: 3,
       semester: "sem5",
-      studyTypes: ["mid-1", "mid-2", "semester-5"],
+      studyTypes: ["semester-5", "mid-1", "mid-2"],
       icon: "brain",
       color: "from-pink-500 to-rose-600",
       accentBg: "bg-sage-100 text-sage-900 border-sage-300",
+      hasNotes: true,
       totalUnitsAvailable: 3,
       zipUrl: "pdfs/deep_learning/Deep_Learning_Complete_Notes.zip",
       zipSize: "1.1 MB",
-      desc: "Ee subject lo unit-wise Mid-1 PDFs, important questions & complete handwritten notes unnayi. Select cheskoni download chesko."
+      desc: "Unit-wise notes, backpropagation calculus, numericals, loss functions & important questions ready ga unnayi."
     },
+    // 2. Computer Networks (Notes Available)
     {
       id: "computer-networks",
       code: "23AM5T02",
@@ -91,31 +94,102 @@ const STUDY_DATABASE = {
       category: "Professional Core (PC)",
       credits: 3,
       semester: "sem5",
-      studyTypes: ["mid-1", "mid-2", "semester-5"],
+      studyTypes: ["semester-5", "mid-1", "mid-2"],
       icon: "network",
       color: "from-blue-500 to-indigo-600",
       accentBg: "bg-sage-100 text-sage-900 border-sage-300",
+      hasNotes: true,
       totalUnitsAvailable: 3,
       zipUrl: "pdfs/computer_networks/Computer_Networks_Complete_Notes.zip",
       zipSize: "692 KB",
-      desc: "OSI Layers, Framing, CRC Error Control, Sliding Window, MAC protocols handwritten notes & class PPTs ready ga unnayi."
+      desc: "OSI 7-Layer, CRC error control, sliding window protocols, MAC sublayer handwritten notes & official class PPTs."
     },
+    // 3. Operating Systems (Notes Available)
     {
       id: "operating-systems",
       code: "23AM5T03",
       name: "Operating Systems",
       tagline: "Processes, CPU Scheduling, Synchronization & Deadlocks",
-      category: "Core Computer Science",
+      category: "Professional Core (PC)",
       credits: 3,
       semester: "sem5",
-      studyTypes: ["mid-1", "mid-2", "semester-5"],
+      studyTypes: ["semester-5", "mid-1", "mid-2"],
       icon: "cpu",
       color: "from-emerald-500 to-teal-600",
       accentBg: "bg-sage-100 text-sage-900 border-sage-300",
+      hasNotes: true,
       totalUnitsAvailable: 3,
       zipUrl: "pdfs/operating_systems/Operating_Systems_Complete_Notes.zip",
       zipSize: "787 KB",
-      desc: "Dual Mode, Gantt Charts, SJF/RR Numericals, Peterson's Solution, Question Bank & class reference notes ikkade unnayi."
+      desc: "Dual mode, scheduling Gantt charts (FCFS, SJF, RR), Peterson's solution, 31-page university Q&A bank."
+    },
+    // 4. Full Stack Development-2 (From Syllabus)
+    {
+      id: "full-stack-dev-2",
+      code: "23AM5S12",
+      name: "Full Stack Development-2",
+      tagline: "React, Node.js, Express, MongoDB & Cloud Deployment",
+      category: "Skill Advanced Course (SC)",
+      credits: 2,
+      semester: "sem5",
+      studyTypes: ["semester-5"],
+      icon: "layers",
+      color: "from-violet-500 to-purple-600",
+      accentBg: "bg-purple-50 text-purple-900 border-purple-200",
+      hasNotes: false,
+      totalUnitsAvailable: 0,
+      desc: "Official Semester 5 syllabus course: Frontend component architecture, backend REST APIs & database connectivity. Study notes soon upload chestam."
+    },
+    // 5. User Interface Design using Flutter (From Syllabus)
+    {
+      id: "ui-flutter",
+      code: "23AM5L13",
+      name: "UI Design using Flutter",
+      tagline: "Cross-Platform Mobile Apps, Dart, Widgets & Layouts",
+      category: "Engineering Science (ES)",
+      credits: 1,
+      semester: "sem5",
+      studyTypes: ["semester-5"],
+      icon: "smartphone",
+      color: "from-cyan-500 to-blue-600",
+      accentBg: "bg-cyan-50 text-cyan-900 border-cyan-200",
+      hasNotes: false,
+      totalUnitsAvailable: 0,
+      desc: "Official Semester 5 syllabus course: Flutter widgets, responsive layouts, navigation & state management. Study notes soon upload chestam."
+    },
+    // 6. Deep Learning Lab (From Syllabus)
+    {
+      id: "dl-lab",
+      code: "23AM5L10",
+      name: "Deep Learning Lab",
+      tagline: "PyTorch/TensorFlow Hands-On, CNNs, RNNs & Model Training",
+      category: "Professional Core Lab (PC)",
+      credits: 1.5,
+      semester: "sem5",
+      studyTypes: ["semester-5"],
+      icon: "flask-conical",
+      color: "from-rose-500 to-pink-600",
+      accentBg: "bg-rose-50 text-rose-900 border-rose-200",
+      hasNotes: false,
+      totalUnitsAvailable: 0,
+      desc: "Official Semester 5 practical lab: Perceptron implementation, MLP backprop, CNN image classification lab experiments & code."
+    },
+    // 7. Operating Systems & Computer Networks Lab (From Syllabus)
+    {
+      id: "os-cn-lab",
+      code: "23AM5L11",
+      name: "OS & Computer Networks Lab",
+      tagline: "Linux Shell Scripting, IPC, System Calls & Packet Tracing",
+      category: "Professional Core Lab (PC)",
+      credits: 1.5,
+      semester: "sem5",
+      studyTypes: ["semester-5"],
+      icon: "terminal",
+      color: "from-emerald-500 to-teal-600",
+      accentBg: "bg-emerald-50 text-emerald-900 border-emerald-200",
+      hasNotes: false,
+      totalUnitsAvailable: 0,
+      desc: "Official Semester 5 practical lab: Unix process management, CPU scheduling simulations & socket programming lab records."
     }
   ],
 
