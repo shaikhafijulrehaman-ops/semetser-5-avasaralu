@@ -73,7 +73,7 @@
     ::-webkit-scrollbar-thumb:hover { background: #B8CFC2; }
 
     .glass-editorial {
-      background: rgba(245, 243, 238, 0.92);
+      background: rgba(245, 243, 238, 0.94);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
     }
@@ -83,7 +83,8 @@
 <body class="font-sans antialiased min-h-screen flex flex-col selection:bg-sage-600 selection:text-white">
 
   <!-- ========================================================== -->
-  <!-- EDITORIAL NAVBAR WITH HIGHLIGHTED BUTTONS -->
+  <!-- EDITORIAL NAVBAR WITH PRECISE NAVIGATION ORDER -->
+  <!-- ORDER: 1. SYLLABUS, 2. SUBJECTS, 3. MID-1, 4. MID-2, 5. SEMESTER -->
   <!-- ========================================================== -->
   <nav class="sticky top-0 z-40 glass-editorial border-b border-ink-border/70 transition-all duration-300">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,32 +103,39 @@
           </div>
         </a>
 
-        <!-- Desktop Navigation with Highlighted States -->
-        <div class="hidden md:flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-ink-secondary">
-          <button id="nav-btn-semester-5" onclick="navGoToStudyType('semester-5')" 
-                  class="px-4 py-2 rounded-full transition-all bg-ink text-canvas shadow-sm">
-            Semester 5
+        <!-- Desktop Navigation: EXACT ORDER (1. SYLLABUS, 2. SUBJECTS, 3. MID-1, 4. MID-2, 5. SEMESTER) -->
+        <div class="hidden md:flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-ink-secondary">
+          
+          <!-- 1. SYLLABUS -->
+          <button id="nav-btn-syllabus" onclick="navGoToSyllabus(event)" 
+                  class="px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent">
+            Syllabus
           </button>
+
+          <!-- 2. SUBJECTS -->
           <button id="nav-btn-subjects" onclick="navGoToSubjects(event)" 
-                  class="px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink text-ink font-extrabold border border-ink-border/60">
+                  class="px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent">
             Subjects
           </button>
+
+          <!-- 3. MID-1 -->
           <button id="nav-btn-mid-1" onclick="navGoToStudyType('mid-1')" 
-                  class="px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink">
+                  class="px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent">
             Mid-1
           </button>
+
+          <!-- 4. MID-2 -->
           <button id="nav-btn-mid-2" onclick="navGoToStudyType('mid-2')" 
-                  class="px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink">
+                  class="px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent">
             Mid-2
           </button>
-          <a href="#syllabus-section" onclick="scrollToElement('syllabus-section')" 
-             class="px-4 py-2 rounded-full transition-all bg-sage-100 hover:bg-sage-200 text-sage-900 border border-sage-300 font-extrabold">
-            Syllabus
-          </a>
-          <a href="#latest" onclick="navGoToLatest(event)" 
-             class="px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink">
-            Just Added
-          </a>
+
+          <!-- 5. SEMESTER -->
+          <button id="nav-btn-semester" onclick="navGoToStudyType('semester-5')" 
+                  class="px-3.5 py-2 rounded-full transition-all duration-200 bg-sage-200 text-sage-900 border border-sage-300 font-extrabold shadow-sm">
+            Semester
+          </button>
+
         </div>
 
         <!-- Right Side: Search & CTA -->
@@ -141,26 +149,70 @@
             <span>Browse Subjects</span>
             <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </button>
-
-          <!-- Mobile Menu Trigger -->
-          <button onclick="toggleMobileMenu()" class="p-2 rounded-full text-ink hover:bg-canvasMuted md:hidden" aria-label="Toggle menu">
-            <i data-lucide="menu" class="w-5 h-5"></i>
-          </button>
         </div>
 
       </div>
     </div>
-
-    <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden border-t border-ink-border bg-canvas px-6 py-5 space-y-4 shadow-xl">
-      <div class="grid grid-cols-2 gap-2 text-center text-xs font-bold uppercase tracking-wider">
-        <button onclick="navGoToStudyType('semester-5'); toggleMobileMenu();" class="py-3 px-4 rounded-2xl bg-ink text-canvas font-bold">Semester 5</button>
-        <button onclick="navGoToSubjects(); toggleMobileMenu();" class="py-3 px-4 rounded-2xl bg-sage-200 text-sage-900 border border-sage-300 font-bold">All Subjects</button>
-        <button onclick="navGoToStudyType('mid-1'); toggleMobileMenu();" class="py-3 px-4 rounded-2xl bg-canvasMuted text-ink">Mid-1 PDFs</button>
-        <button onclick="openSyllabusViewer(); toggleMobileMenu();" class="py-3 px-4 rounded-2xl bg-sage-100 text-sage-900 border border-sage-200">S5 Syllabus</button>
-      </div>
-    </div>
   </nav>
+
+
+  <!-- ========================================================== -->
+  <!-- MOBILE FLOATING S5 NAVIGATION (BOTTOM-RIGHT) -->
+  <!-- ========================================================== -->
+  <div class="md:hidden">
+    <!-- Backdrop overlay for mobile menu -->
+    <div id="mobile-s5-backdrop" onclick="toggleMobileS5Menu(false)" class="hidden fixed inset-0 z-40 bg-ink/30 backdrop-blur-xs transition-opacity"></div>
+
+    <!-- Floating Popover Navigation Panel (Opens above S5 FAB) -->
+    <div id="mobile-s5-menu" class="hidden fixed bottom-24 right-5 z-50 bg-canvas/95 backdrop-blur-xl border border-ink-border rounded-3xl p-2.5 shadow-2xl w-56 space-y-1 transform transition-all duration-200 origin-bottom-right">
+      <div class="px-3 py-1.5 border-b border-ink-border/50 flex items-center justify-between mb-1">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-ink-muted">Quick Navigation</span>
+        <span class="w-2 h-2 rounded-full bg-sage-600 animate-pulse"></span>
+      </div>
+
+      <!-- 1. SYLLABUS -->
+      <button id="mob-nav-btn-syllabus" onclick="navGoToSyllabus(event); toggleMobileS5Menu(false);" 
+              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
+        <span>1. Syllabus</span>
+        <i data-lucide="book-open" class="w-3.5 h-3.5"></i>
+      </button>
+
+      <!-- 2. SUBJECTS -->
+      <button id="mob-nav-btn-subjects" onclick="navGoToSubjects(event); toggleMobileS5Menu(false);" 
+              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
+        <span>2. Subjects</span>
+        <i data-lucide="grid" class="w-3.5 h-3.5"></i>
+      </button>
+
+      <!-- 3. MID-1 -->
+      <button id="mob-nav-btn-mid-1" onclick="navGoToStudyType('mid-1'); toggleMobileS5Menu(false);" 
+              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
+        <span>3. Mid-1</span>
+        <i data-lucide="zap" class="w-3.5 h-3.5"></i>
+      </button>
+
+      <!-- 4. MID-2 -->
+      <button id="mob-nav-btn-mid-2" onclick="navGoToStudyType('mid-2'); toggleMobileS5Menu(false);" 
+              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all flex items-center justify-between text-ink-secondary hover:text-ink hover:bg-sage-100/70">
+        <span>4. Mid-2</span>
+        <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+      </button>
+
+      <!-- 5. SEMESTER -->
+      <button id="mob-nav-btn-semester" onclick="navGoToStudyType('semester-5'); toggleMobileS5Menu(false);" 
+              class="w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider transition-all bg-sage-200 text-sage-900 border border-sage-300 shadow-sm flex items-center justify-between">
+        <span>5. Semester</span>
+        <i data-lucide="graduation-cap" class="w-3.5 h-3.5"></i>
+      </button>
+    </div>
+
+    <!-- Floating S5 Trigger Button (Bottom-Right) -->
+    <button id="mobile-s5-fab" onclick="toggleMobileS5Menu()" 
+            class="fixed bottom-6 right-5 z-50 w-14 h-14 rounded-full bg-ink text-canvas border border-white/20 shadow-2xl flex items-center justify-center font-display font-black text-base active:scale-90 hover:scale-105 transition-transform" 
+            aria-label="Open Navigation">
+      <span class="text-sage-300 leading-none">S5</span>
+    </button>
+  </div>
 
 
   <!-- ========================================================== -->
@@ -211,7 +263,6 @@
 
       </div>
 
-
     </div>
   </section>
 
@@ -248,6 +299,38 @@
             <i data-lucide="download" class="w-4 h-4"></i>
             <span>Download PDF ↓</span>
           </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ========================================================== -->
+  <!-- QUICK STATS -->
+  <!-- ========================================================== -->
+  <section class="py-10 border-b border-ink-border/70 bg-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center md:text-left divide-y md:divide-y-0 md:divide-x divide-ink-border/60">
+        
+        <div class="pt-4 md:pt-0 md:px-4">
+          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">09</p>
+          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Unit Notes</p>
+        </div>
+
+        <div class="pt-4 md:pt-0 md:px-4">
+          <p class="text-4xl sm:text-5xl font-display font-extrabold text-sage-600 tracking-tight">SEM-5</p>
+          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Active Semester</p>
+        </div>
+
+        <div class="pt-4 md:pt-0 md:px-4">
+          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">08P</p>
+          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">S5 Syllabus Book</p>
+        </div>
+
+        <div class="pt-4 md:pt-0 md:px-4">
+          <p class="text-4xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">FREE</p>
+          <p class="text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Organized Library</p>
         </div>
 
       </div>
@@ -417,10 +500,11 @@
         <div class="md:col-span-6 flex flex-wrap items-start justify-start md:justify-end gap-8 text-xs font-bold uppercase tracking-widest text-canvas/80">
           <div class="space-y-3">
             <p class="text-sage-300 text-[10px]">Academic</p>
-            <p><button onclick="navGoToStudyType('semester-5')" class="hover:text-white transition-colors text-sage-300">Semester 5</button></p>
-            <p><button onclick="navGoToSubjects(event)" class="hover:text-white transition-colors">All Subjects</button></p>
-            <p><button onclick="navGoToStudyType('mid-1')" class="hover:text-white transition-colors">Mid-1 PDFs</button></p>
-            <p><button onclick="navGoToStudyType('mid-2')" class="hover:text-white transition-colors">Mid-2 (Soon)</button></p>
+            <p><button onclick="navGoToSyllabus(event)" class="hover:text-white transition-colors">1. Syllabus</button></p>
+            <p><button onclick="navGoToSubjects(event)" class="hover:text-white transition-colors">2. Subjects</button></p>
+            <p><button onclick="navGoToStudyType('mid-1')" class="hover:text-white transition-colors">3. Mid-1</button></p>
+            <p><button onclick="navGoToStudyType('mid-2')" class="hover:text-white transition-colors">4. Mid-2</button></p>
+            <p><button onclick="navGoToStudyType('semester-5')" class="hover:text-white transition-colors text-sage-300">5. Semester</button></p>
           </div>
 
           <div class="space-y-3">
@@ -471,42 +555,82 @@
       
       if (hash.startsWith('subject/')) {
         selectedSubjectId = hash.replace('subject/', '');
+      } else if (hash === 'syllabus') {
+        selectedSubjectId = null;
+        scrollToElement('syllabus-section');
+      } else if (hash === 'subjects') {
+        currentStudyType = 'semester-5';
+        selectedSubjectId = null;
       } else if (hash === 'mid-1') {
         currentStudyType = 'mid-1';
         selectedSubjectId = null;
       } else if (hash === 'mid-2') {
         currentStudyType = 'mid-2';
         selectedSubjectId = null;
-      } else if (hash === 'subjects' || hash === 'semester' || hash === 'semester-5' || hash === 'home') {
+      } else if (hash === 'semester' || hash === 'semester-5' || hash === 'home') {
         currentStudyType = 'semester-5';
         selectedSubjectId = null;
-      } else if (hash === 'syllabus') {
-        openSyllabusViewer();
       }
 
       updateNavbarHighlights();
       renderApp();
     }
 
+    // Dynamic Navigation Active Highlight Engine
+    // Order: 1. SYLLABUS, 2. SUBJECTS, 3. MID-1, 4. MID-2, 5. SEMESTER
     function updateNavbarHighlights() {
-      const isSubjects = window.location.hash === '#subjects' || (!selectedSubjectId && currentStudyType === 'semester-5');
-      const isMid1 = currentStudyType === 'mid-1';
-      const isMid2 = currentStudyType === 'mid-2';
+      const hash = window.location.hash || '#semester-5';
+      let activeKey = 'semester'; // default
 
-      const btnS5 = document.getElementById('nav-btn-semester-5');
-      const btnSub = document.getElementById('nav-btn-subjects');
-      const btnM1 = document.getElementById('nav-btn-mid-1');
-      const btnM2 = document.getElementById('nav-btn-mid-2');
+      if (hash === '#syllabus') {
+        activeKey = 'syllabus';
+      } else if (hash === '#subjects') {
+        activeKey = 'subjects';
+      } else if (hash === '#mid-1' || currentStudyType === 'mid-1') {
+        activeKey = 'mid-1';
+      } else if (hash === '#mid-2' || currentStudyType === 'mid-2') {
+        activeKey = 'mid-2';
+      } else if (hash.startsWith('#subject/')) {
+        activeKey = 'subjects';
+      } else if (hash === '#semester-5' || hash === '#semester' || hash === '#home' || currentStudyType === 'semester-5') {
+        activeKey = 'semester';
+      }
 
-      if (btnS5) btnS5.className = currentStudyType === 'semester-5' && !isSubjects ? "px-4 py-2 rounded-full transition-all bg-ink text-canvas shadow-sm font-bold" : "px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink text-ink font-bold";
-      if (btnSub) btnSub.className = isSubjects ? "px-4 py-2 rounded-full transition-all bg-ink text-canvas shadow-sm font-extrabold border border-ink" : "px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink text-ink font-extrabold border border-ink-border/60";
-      if (btnM1) btnM1.className = isMid1 ? "px-4 py-2 rounded-full transition-all bg-ink text-canvas shadow-sm font-bold" : "px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink font-bold";
-      if (btnM2) btnM2.className = isMid2 ? "px-4 py-2 rounded-full transition-all bg-ink text-canvas shadow-sm font-bold" : "px-4 py-2 rounded-full transition-all hover:bg-canvasMuted hover:text-ink font-bold";
+      const activeDeskClass = "px-3.5 py-2 rounded-full transition-all duration-200 bg-sage-200 text-sage-900 border border-sage-300 font-extrabold shadow-sm";
+      const inactiveDeskClass = "px-3.5 py-2 rounded-full transition-all duration-200 text-ink-secondary hover:text-ink hover:bg-sage-100/70 border border-transparent font-bold";
+
+      const activeMobClass = "w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-extrabold uppercase tracking-wider transition-all bg-sage-200 text-sage-900 border border-sage-300 shadow-sm flex items-center justify-between";
+      const inactiveMobClass = "w-full text-left px-3.5 py-2.5 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all text-ink-secondary hover:text-ink hover:bg-sage-100/70 flex items-center justify-between";
+
+      const keys = ['syllabus', 'subjects', 'mid-1', 'mid-2', 'semester'];
+
+      keys.forEach(k => {
+        const deskBtn = document.getElementById('nav-btn-' + k);
+        if (deskBtn) {
+          deskBtn.className = (k === activeKey) ? activeDeskClass : inactiveDeskClass;
+        }
+
+        const mobBtn = document.getElementById('mob-nav-btn-' + k);
+        if (mobBtn) {
+          mobBtn.className = (k === activeKey) ? activeMobClass : inactiveMobClass;
+        }
+      });
     }
 
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
+    // Mobile S5 Popover Toggle Function
+    function toggleMobileS5Menu(forceState) {
+      const menu = document.getElementById('mobile-s5-menu');
+      const backdrop = document.getElementById('mobile-s5-backdrop');
+      if (!menu) return;
+
+      const shouldOpen = typeof forceState === 'boolean' ? forceState : menu.classList.contains('hidden');
+      if (shouldOpen) {
+        menu.classList.remove('hidden');
+        if (backdrop) backdrop.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        if (backdrop) backdrop.classList.add('hidden');
+      }
     }
 
     function navGoHome(e) {
@@ -518,19 +642,33 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    function navGoToStudyType(type) {
-      currentStudyType = type;
-      selectedSubjectId = null;
-      window.location.hash = '#' + type;
-      renderApp();
-      scrollToElement('study-browser');
+    // 1. SYLLABUS ROUTE
+    function navGoToSyllabus(e) {
+      if (e) e.preventDefault();
+      window.location.hash = '#syllabus';
+      scrollToElement('syllabus-section');
+      updateNavbarHighlights();
     }
 
+    // 2. SUBJECTS ROUTE
     function navGoToSubjects(e) {
       if (e) e.preventDefault();
       selectedSubjectId = null;
       currentStudyType = 'semester-5';
       window.location.hash = '#subjects';
+      renderApp();
+      scrollToElement('study-browser');
+    }
+
+    // 3. MID-1 & 4. MID-2 & 5. SEMESTER ROUTES
+    function navGoToStudyType(type) {
+      currentStudyType = type;
+      selectedSubjectId = null;
+      if (type === 'semester-5') {
+        window.location.hash = '#semester';
+      } else {
+        window.location.hash = '#' + type;
+      }
       renderApp();
       scrollToElement('study-browser');
     }
