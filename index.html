@@ -386,30 +386,7 @@
   </section>
 
 
-  <!-- ========================================================== -->
-  <!-- JUST ADDED (LATEST NOTES SECTION) -->
-  <!-- ========================================================== -->
-  <section id="latest" class="py-20 bg-white border-t border-ink-border">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-widest text-sage-800">Fresh Uploads</span>
-          <h2 class="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold tracking-tight text-ink uppercase mt-1">
-            Just Added
-          </h2>
-        </div>
-        <p class="text-xs sm:text-sm text-ink-muted font-serif italic mt-2 sm:mt-0">
-          Recently verified exam materials.
-        </p>
-      </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="latest-cards-container">
-        <!-- Rendered by JS -->
-      </div>
-
-    </div>
-  </section>
 
 
   <!-- ========================================================== -->
@@ -511,7 +488,6 @@
             <p class="text-sage-300 text-[10px]">Resources</p>
             <p><button onclick="openSyllabusViewer()" class="hover:text-white transition-colors text-sage-300">S5 Syllabus (8P)</button></p>
             <p><button onclick="navGoToSubjects(event)" class="hover:text-white transition-colors">Subjects List</button></p>
-            <p><a href="#latest" onclick="navGoToLatest(event)" class="hover:text-white transition-colors">Just Added</a></p>
             <p><button onclick="openSearchModalDirect()" class="hover:text-white transition-colors">Search</button></p>
           </div>
         </div>
@@ -546,7 +522,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
       handleHashChange();
-      renderLatestCards();
       window.addEventListener('hashchange', handleHashChange);
     });
 
@@ -673,10 +648,6 @@
       scrollToElement('study-browser');
     }
 
-    function navGoToLatest(e) {
-      if (e) e.preventDefault();
-      scrollToElement('latest');
-    }
 
     function selectSubject(subjectId) {
       selectedSubjectId = subjectId;
@@ -1091,41 +1062,6 @@
       lucide.createIcons();
     }
 
-    function renderLatestCards() {
-      const container = document.getElementById('latest-cards-container');
-      const latestPdfs = STUDY_DATABASE.pdfs.filter(p => p.isLatest).slice(0, 3);
-
-      let html = '';
-      latestPdfs.forEach(pdf => {
-        const sub = STUDY_DATABASE.subjects.find(s => s.id === pdf.subjectId);
-        html += `
-          <div class="p-7 rounded-[2rem] bg-white border border-ink-border flex flex-col justify-between hover:shadow-lg hover:border-sage-600 transition-all">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="text-[10px] font-bold uppercase tracking-widest text-sage-800">${sub.name}</span>
-                <span class="text-[10px] text-ink-muted font-bold">${pdf.fileSize}</span>
-              </div>
-              <h4 class="text-base font-display font-bold text-ink leading-snug">${pdf.unitNum ? `Unit 0${pdf.unitNum} &bull; ` : ''}${pdf.title}</h4>
-              <p class="text-xs text-ink-secondary mt-2 line-clamp-2">${pdf.description}</p>
-            </div>
-            
-            <div class="mt-6 pt-4 border-t border-canvasMuted flex items-center justify-between">
-              <button onclick="openPdfViewer('${pdf.title}', '${pdf.unitLabel} &bull; ${sub.name}', '${pdf.pdfUrl}')" 
-                      class="text-xs font-bold uppercase tracking-wider text-sage-800 hover:text-ink flex items-center gap-1">
-                <i data-lucide="eye" class="w-3.5 h-3.5"></i> Read PDF
-              </button>
-
-              <a href="${pdf.pdfUrl}" download class="text-xs font-bold uppercase tracking-wider text-ink hover:text-sage-600 flex items-center gap-1">
-                <i data-lucide="download" class="w-3.5 h-3.5"></i> Download
-              </a>
-            </div>
-          </div>
-        `;
-      });
-
-      container.innerHTML = html;
-      lucide.createIcons();
-    }
 
     // Search Engine
     function openSearchModalDirect() {
