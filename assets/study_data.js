@@ -31,6 +31,14 @@ const STUDY_DATABASE = {
       desc: "Mid-2 exams preparation kosam unit-wise PDFs and materials ikkada browse cheskondi.",
       icon: "file-plus",
       available: true
+    },
+    {
+      id: "papers",
+      name: "Model & Previous Papers",
+      badge: "Available Now",
+      desc: "Semester 5 AIML official autonomous model papers & previous examination question papers.",
+      icon: "archive",
+      available: true
     }
   ],
 
