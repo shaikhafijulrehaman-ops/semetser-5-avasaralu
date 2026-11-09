@@ -452,8 +452,8 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 text-center md:text-left">
         
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
-          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">09</p>
-          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Unit Notes</p>
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">35+</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Study PDFs</p>
         </div>
 
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
@@ -462,8 +462,8 @@
         </div>
 
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
-          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">08P</p>
-          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">S5 Syllabus Book</p>
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">5 UNITS</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">OS & CN Complete</p>
         </div>
 
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
@@ -927,7 +927,7 @@
         return;
       }
 
-      // 2. MID-2 MODE (COMING SOON)
+      // 2. MID-2 MODE (UNITS 4 & 5 AVAILABLE)
       if (currentStudyType === 'mid-2') {
         breadcrumb.innerHTML = `
           <span class="hover:text-ink cursor-pointer" onclick="navGoHome(event)">Home</span>
@@ -935,27 +935,54 @@
           <span class="text-ink font-bold">Mid-2 Preparation</span>
         `;
         viewTitle.innerText = "Mid-2 Preparation";
-        viewDesc.innerText = "“Mid-2 exams preparation kosam unit-wise PDFs soon upload chestam.”";
+        viewDesc.innerText = "“Mid-2 exams preparation kosam Operating Systems & Computer Networks Unit 4 & 5 study materials ready ga unnayi.”";
 
-        container.innerHTML = `
-          <div class="p-8 sm:p-16 text-center glass-panel rounded-3xl md:rounded-[2.5rem] border border-white/90 max-w-2xl mx-auto shadow-md">
-            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full glass-pill text-ink flex items-center justify-center mx-auto mb-4 shadow-xs">
-              <i data-lucide="clock" class="w-7 h-7 sm:w-8 sm:h-8"></i>
-            </div>
-            <span class="inline-block px-3.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider glass-pill text-ink mb-3">
-              Coming Soon
-            </span>
-            <h3 class="text-xl sm:text-3xl font-display font-bold text-ink">Mid-2 Preparation Notes</h3>
-            <p class="text-xs sm:text-sm text-ink-secondary mt-2 max-w-md mx-auto leading-relaxed">
-              Mid-2 syllabus study PDFs inka add cheyyaledu. Soon upload chestam.
-            </p>
-            <div class="mt-6 sm:mt-8">
-              <button onclick="navGoToSubjects(event)" class="w-full sm:w-auto px-7 py-3.5 rounded-full bg-ink text-canvas text-xs font-bold uppercase tracking-wider hover:bg-sage-600 transition-all border border-white/20">
-                &larr; Browse Semester 5 Subjects (Available Now)
-              </button>
+        let mid2Html = `
+          <div class="mb-6 sm:mb-10 p-5 sm:p-6 rounded-3xl md:rounded-[2rem] glass-card-sage border border-white/80 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+            <div>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-sage-900 bg-sage-200/90 px-3 py-0.5 rounded-full border border-sage-300">
+                Mid-2 Study Materials Available
+              </span>
+              <h3 class="text-lg sm:text-xl font-display font-bold text-ink mt-1">Mid-2 Units (Unit 4 & Unit 5 Complete)</h3>
+              <p class="text-xs text-ink-secondary mt-0.5">Faculty Provided, AI Generated Solutions & 2 Marks Questions ready ga unnayi.</p>
             </div>
           </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         `;
+
+        STUDY_DATABASE.subjects.filter(s => s.id === 'operating-systems' || s.id === 'computer-networks').forEach(sub => {
+          const subPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === sub.id && (p.unitNum === 4 || p.unitNum === 5 || p.studyType === 'mid-2'));
+          mid2Html += `
+            <div onclick="selectSubject('${sub.id}')" 
+                 class="cursor-pointer glass-panel glass-panel-hover rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
+              <div>
+                <div class="flex items-center justify-between mb-3 sm:mb-4">
+                  <span class="text-xs font-bold uppercase tracking-widest text-sage-800 bg-sage-100/90 px-3 py-1 rounded-full border border-sage-200">
+                    ${sub.code} &bull; Unit 4 & 5 Ready
+                  </span>
+                  <div class="w-8 h-8 rounded-full glass-pill flex items-center justify-center text-ink group-hover:bg-sage-600 group-hover:text-white transition-colors">
+                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
+                  </div>
+                </div>
+
+                <h3 class="text-xl sm:text-2xl font-display font-bold text-ink group-hover:text-sage-600 transition-colors">
+                  ${sub.name}
+                </h3>
+                <p class="text-xs text-ink-muted font-semibold uppercase tracking-wider mt-1">${sub.tagline}</p>
+                <p class="text-xs text-ink-secondary mt-2.5 sm:mt-3 line-clamp-2 leading-relaxed">${sub.desc}</p>
+              </div>
+
+              <div class="mt-6 sm:mt-8 pt-4 border-t border-ink-border/30 flex items-center justify-between text-xs font-bold uppercase tracking-wider text-ink">
+                <span>Browse Unit 4 & 5 Materials</span>
+                <span class="group-hover:translate-x-1 transition-transform">Browse &rarr;</span>
+              </div>
+            </div>
+          `;
+        });
+
+        mid2Html += `</div>`;
+        container.innerHTML = mid2Html;
         lucide.createIcons();
         return;
       }
@@ -963,7 +990,7 @@
       // 3. SUBJECT SELECTED &rarr; RENDER CATEGORIZED STUDY MATERIALS (STRICT ORDER)
       if (selectedSubjectId) {
         const subject = STUDY_DATABASE.subjects.find(s => s.id === selectedSubjectId);
-        const currentModeLabel = currentStudyType === 'mid-1' ? 'Mid-1' : 'Semester 5';
+        const currentModeLabel = currentStudyType === 'mid-1' ? 'Mid-1' : (currentStudyType === 'mid-2' ? 'Mid-2' : 'Semester 5');
         
         breadcrumb.innerHTML = `
           <span class="hover:text-ink cursor-pointer" onclick="navGoHome(event)">Home</span>
@@ -976,34 +1003,53 @@
         viewTitle.innerText = subject.name;
         viewDesc.innerText = `“${subject.desc}”`;
 
-        const allSubjectPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === selectedSubjectId && p.studyType === 'mid-1');
+        const allSubjectPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === selectedSubjectId);
 
-        const categories = [
-          {
-            id: "unit-notes",
-            title: "Unit-wise Notes",
-            badge: "Handwritten Exam Notes",
-            desc: "Complete handwritten notes sorted by numerical unit order."
-          },
-          {
-            id: "mid-important-qa",
-            title: "MID Important Questions + Answers",
-            badge: "Full Solution Bank",
-            desc: "Complete university question bank with detailed step-by-step answers."
-          },
-          {
-            id: "important-questions",
-            title: "Important Questions",
-            badge: "Targeted Revision List",
-            desc: "Targeted 2-mark and 10-mark questions list for mid-1 examination."
-          },
-          {
-            id: "class-material",
-            title: "Class Study Materials",
-            badge: "Official Reference",
-            desc: "Classroom lecture slides and official study notes."
-          }
-        ];
+        // Strict 3 Primary Categories for OS and CN as requested
+        let categories = [];
+        if (selectedSubjectId === 'operating-systems' || selectedSubjectId === 'computer-networks') {
+          categories = [
+            {
+              id: "faculty-provided",
+              title: "FACULTY PROVIDED UNIT-WISE MATERIAL",
+              badge: "Faculty Provided",
+              desc: "Faculty provide chesina original unit-wise PDFs ikkada available untayi. Required Unit select cheskoni original material chaduvukondi."
+            },
+            {
+              id: "ai-generated",
+              title: "AI GENERATED ANSWERS FOR COMPLETE PREPARATION",
+              badge: "AI Generated",
+              desc: "Complete preparation ki help avvadaniki easy English lo explanations, detailed answers, examples and diagrams tho prepare chesina AI-generated study PDFs."
+            },
+            {
+              id: "two-marks",
+              title: "2 MARKS – IMPORTANT SHORT ANSWERS",
+              badge: "2 Marks",
+              desc: "Exam preparation kosam 2 marks questions and answers ikkada separate ga arrange chesam."
+            },
+            {
+              id: "question-banks",
+              title: "QUESTION BANKS & UNIVERSITY MODEL PAPERS",
+              badge: "Question Bank",
+              desc: "University master question banks & previous autonomous examination papers practice kosam."
+            }
+          ];
+        } else {
+          categories = [
+            {
+              id: "unit-notes",
+              title: "Unit-wise Notes",
+              badge: "Handwritten Exam Notes",
+              desc: "Complete handwritten notes sorted by numerical unit order."
+            },
+            {
+              id: "important-questions",
+              title: "Important Questions & Question Bank",
+              badge: "Targeted Revision List",
+              desc: "Targeted 2-mark and 10-mark questions list & master question bank for examination."
+            }
+          ];
+        }
 
         let subjectContentHtml = `
           <div class="mb-6 sm:mb-10 p-4 sm:p-6 rounded-3xl md:rounded-[2rem] glass-card-sage border border-white/85 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 shadow-sm">
@@ -1012,7 +1058,7 @@
                 <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i>
                 <span>All Subjects</span>
               </button>
-              <span class="text-xs font-bold uppercase tracking-wider text-sage-900">${allSubjectPdfs.length} PDFs</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-sage-900">${allSubjectPdfs.length} Study PDFs</span>
             </div>
 
             <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
@@ -1033,22 +1079,22 @@
           <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 sm:mb-10 text-xs font-bold uppercase tracking-wider">
             <button onclick="filterCategory('all')" 
                     class="px-4 py-2 rounded-full whitespace-nowrap transition-all shrink-0 ${selectedCategoryFilter === 'all' ? 'bg-ink text-canvas shadow-sm' : 'glass-pill text-ink-secondary hover:bg-white'}">
-              All (${allSubjectPdfs.length})
+              All Materials (${allSubjectPdfs.length})
             </button>
             ${categories.map(cat => {
               const count = allSubjectPdfs.filter(p => p.materialType === cat.id).length;
-              if (count === 0 && cat.id !== 'mid-important-qa') return '';
+              if (count === 0) return '';
               const isSel = selectedCategoryFilter === cat.id;
               return `
                 <button onclick="filterCategory('${cat.id}')" 
                         class="px-4 py-2 rounded-full whitespace-nowrap transition-all shrink-0 ${isSel ? 'bg-ink text-canvas shadow-sm' : 'glass-pill text-ink-secondary hover:bg-white'}">
-                  ${cat.title} (${count})
+                  ${cat.badge} (${count})
                 </button>
               `;
             }).join('')}
           </div>
 
-          <div class="space-y-10 sm:space-y-16">
+          <div class="space-y-12 sm:space-y-16">
         `;
 
         categories.forEach(cat => {
@@ -1058,88 +1104,109 @@
 
           let catPdfs = allSubjectPdfs.filter(p => p.materialType === cat.id);
 
-          if (cat.id === 'unit-notes' || cat.id === 'class-material') {
-            catPdfs.sort((a, b) => (a.unitNum || 0) - (b.unitNum || 0));
-          }
+          // Strictly sort in numerical order: Unit 1, Unit 2, Unit 3, Unit 4, Unit 5
+          catPdfs.sort((a, b) => {
+            if (a.unitNum !== null && b.unitNum !== null) {
+              return a.unitNum - b.unitNum;
+            }
+            if (a.unitNum !== null) return -1;
+            if (b.unitNum !== null) return 1;
+            return 0;
+          });
 
-          subjectContentHtml += `
-            <div class="space-y-4 sm:space-y-6">
-              <div class="flex flex-wrap items-center justify-between pb-2 sm:pb-3 border-b border-ink-border/50 gap-2">
-                <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-                  <h3 class="text-lg sm:text-2xl font-display font-bold text-ink uppercase tracking-tight">
-                    ${cat.title}
-                  </h3>
-                  <span class="px-2.5 sm:px-3 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-sage-200/90 text-sage-900 border border-sage-300">
-                    ${cat.badge}
-                  </span>
-                </div>
-                <span class="text-xs font-bold uppercase tracking-wider text-ink-muted">${catPdfs.length} Files</span>
-              </div>
-          `;
-
-          if (catPdfs.length === 0) {
+          if (catPdfs.length === 0 && selectedCategoryFilter !== 'all') {
             subjectContentHtml += `
               <div class="p-6 sm:p-8 text-center glass-panel rounded-3xl border border-white/80 text-ink-muted text-xs">
                 <p class="font-bold text-ink text-sm">PDF Soon Add Chestam</p>
                 <p class="mt-1 font-serif italic">Ee category study material inka add cheyyaledu.</p>
               </div>
             `;
-          } else {
-            subjectContentHtml += `<div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">`;
-            
-            catPdfs.forEach(pdf => {
-              subjectContentHtml += `
-                <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-5 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
-                  <div>
-                    <div class="flex items-center justify-between mb-3">
-                      <span class="text-lg sm:text-xl font-display font-extrabold text-ink">
-                        ${pdf.unitNum ? `0${pdf.unitNum}` : 'PDF'}
-                      </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider bg-sage-100/90 text-sage-900 border border-sage-200">
-                        ${pdf.formatBadge || 'Exam Material'}
-                      </span>
-                    </div>
-
-                    <h4 class="text-sm sm:text-base font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
-                      ${pdf.title}
-                    </h4>
-                    
-                    <p class="text-[11px] sm:text-xs font-semibold text-ink-muted mt-1 uppercase tracking-wider">
-                      ${pdf.subtitle}
-                    </p>
-
-                    <p class="text-xs text-ink-secondary mt-2 sm:mt-3 line-clamp-3 leading-relaxed">${pdf.description}</p>
-
-                    <div class="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-ink-border/30 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-ink-muted">
-                      <span>${pdf.pageCount}</span>
-                      <span>&bull;</span>
-                      <span>${pdf.fileSize}</span>
-                    </div>
-                  </div>
-
-                  <div class="mt-5 sm:mt-6 pt-3 sm:pt-4 border-t border-ink-border/30">
-                    <div class="grid grid-cols-2 gap-2">
-                      <button onclick="openPdfViewer('${pdf.title}', '${pdf.unitLabel} &bull; ${subject.name}', '${pdf.pdfUrl}')" 
-                              class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                        <span>Read</span>
-                      </button>
-
-                      <a href="${pdf.pdfUrl}" download class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all text-center border border-white/20">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                        <span>Download</span>
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
-              `;
-            });
-
-            subjectContentHtml += `</div>`;
+            return;
           }
 
-          subjectContentHtml += `</div>`;
+          if (catPdfs.length === 0) return;
+
+          subjectContentHtml += `
+            <div class="space-y-4 sm:space-y-5">
+              <div class="pb-3 border-b border-ink-border/50">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+                    <h3 class="text-base sm:text-xl font-display font-extrabold text-ink uppercase tracking-tight">
+                      ${cat.title}
+                    </h3>
+                    <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider ${
+                      cat.id === 'faculty-provided' ? 'bg-amber-100/90 text-amber-900 border border-amber-300/80' :
+                      cat.id === 'ai-generated' ? 'bg-purple-100/90 text-purple-900 border border-purple-300/80' :
+                      cat.id === 'two-marks' ? 'bg-emerald-100/90 text-emerald-900 border border-emerald-300/80' :
+                      'bg-sage-200/90 text-sage-900 border border-sage-300'
+                    }">
+                      ${cat.badge}
+                    </span>
+                  </div>
+                  <span class="text-xs font-bold uppercase tracking-wider text-ink-muted">${catPdfs.length} Files</span>
+                </div>
+                ${cat.desc ? `<p class="text-xs text-ink-secondary mt-1.5 font-serif italic leading-relaxed">${cat.desc}</p>` : ''}
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
+          `;
+
+          catPdfs.forEach(pdf => {
+            const badgeClass = 
+              pdf.formatBadge === 'Faculty Provided' || pdf.formatBadge === 'Faculty Guide' || pdf.formatBadge === 'Faculty List' ? 'bg-amber-100/90 text-amber-900 border border-amber-300/80' :
+              pdf.formatBadge === 'AI Generated' ? 'bg-purple-100/90 text-purple-900 border border-purple-300/80' :
+              pdf.formatBadge && pdf.formatBadge.includes('2 Marks') ? 'bg-emerald-100/90 text-emerald-900 border border-emerald-300/80' :
+              'bg-sage-100/90 text-sage-900 border border-sage-200';
+
+            subjectContentHtml += `
+              <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-5 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="text-lg sm:text-xl font-display font-extrabold text-ink">
+                      ${pdf.unitNum ? `Unit 0${pdf.unitNum}` : (pdf.unitLabel || 'PDF')}
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-wider ${badgeClass}">
+                      ${pdf.formatBadge || cat.badge}
+                    </span>
+                  </div>
+
+                  <h4 class="text-sm sm:text-base font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
+                    ${pdf.title}
+                  </h4>
+                  
+                  <p class="text-[11px] sm:text-xs font-semibold text-ink-muted mt-1 uppercase tracking-wider">
+                    ${pdf.subtitle}
+                  </p>
+
+                  <p class="text-xs text-ink-secondary mt-2 sm:mt-3 line-clamp-3 leading-relaxed">${pdf.description}</p>
+
+                  <div class="flex items-center gap-2 sm:gap-3 mt-3 sm:mt-4 pt-2.5 sm:pt-3 border-t border-ink-border/30 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                    <span>${pdf.pageCount}</span>
+                    <span>&bull;</span>
+                    <span>${pdf.fileSize}</span>
+                  </div>
+                </div>
+
+                <div class="mt-5 sm:mt-6 pt-3 sm:pt-4 border-t border-ink-border/30">
+                  <div class="grid grid-cols-2 gap-2">
+                    <button onclick="openPdfViewer('${pdf.title.replace(/'/g, "\\'")}', '${pdf.unitLabel} &bull; ${subject.name.replace(/'/g, "\\'")}', '${pdf.pdfUrl}')" 
+                            class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 transition-all shadow-xs">
+                      <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                      <span>Read</span>
+                    </button>
+
+                    <a href="${pdf.pdfUrl}" download class="w-full py-2 sm:py-2.5 px-2 sm:px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1 shadow-sm transition-all text-center border border-white/20">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                      <span>Download</span>
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            `;
+          });
+
+          subjectContentHtml += `</div></div>`;
         });
 
         subjectContentHtml += `</div>`;
