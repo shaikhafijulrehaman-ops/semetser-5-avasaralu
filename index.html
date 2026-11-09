@@ -1099,7 +1099,7 @@
         return;
       }
 
-      // 3. MODEL & PREVIOUS PAPERS VIEW (SECTION 1: MODEL PAPERS, SECTION 2: PREVIOUS PAPERS)
+      // 3. MODEL & PREVIOUS PAPERS VIEW (ALL PAPERS AT ONE PLACE)
       if (currentStudyType === 'papers' && !selectedSubjectId) {
         breadcrumb.innerHTML = `
           <span class="hover:text-ink cursor-pointer" onclick="navGoHome(event)">Home</span>
@@ -1107,10 +1107,10 @@
           <span class="text-ink font-bold">Model &amp; Previous Question Papers</span>
         `;
         viewTitle.innerText = "Model & Previous Papers";
-        viewDesc.innerText = "“Semester 5 official autonomous model papers and previous examination papers separate ga ikkada arrange chesam.”";
+        viewDesc.innerText = "“Semester 5 official autonomous model question paper and previous examination paper ikkade available ga unnayi.”";
 
         let papersHtml = `
-          <!-- Top Info Banner -->
+          <!-- Top Info Banner (NO Check Syllabus Button - Syllabus is completely different) -->
           <div class="mb-8 sm:mb-12 p-6 sm:p-8 rounded-3xl md:rounded-[2rem] glass-card-sage border border-white/80 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-sm">
             <div class="max-w-2xl space-y-2">
               <div class="flex items-center gap-2 flex-wrap">
@@ -1123,262 +1123,150 @@
                 Semester 5 Model &amp; Previous Question Papers
               </h3>
               <p class="text-xs sm:text-sm text-ink-secondary leading-relaxed">
-                Exam preparation and question pattern analysis kosam <b>Section 1: Model Papers</b> and <b>Section 2: Previous Papers</b> clearly separate chesi provide chesam.
+                Exam preparation and question pattern analysis kosam official model question paper and previous examination paper rendu ikkade arrange chesam.
               </p>
             </div>
 
-            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 shrink-0 w-full md:w-auto">
-              <button onclick="openSyllabusViewer()" class="px-5 py-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center justify-center gap-2 border border-white/20">
-                <i data-lucide="book-open" class="w-4 h-4"></i>
-                <span>Check Syllabus (8P)</span>
-              </button>
+            <div class="flex items-center gap-2 px-4 py-2 rounded-full glass-pill border border-sage-200 text-xs font-bold uppercase tracking-wider text-sage-900 shrink-0 shadow-xs">
+              <i data-lucide="file-check" class="w-4 h-4 text-sage-700"></i>
+              <span>2 Verified Papers Available</span>
             </div>
           </div>
 
-          <div class="space-y-12 sm:space-y-16">
-
-            <!-- ========================================================== -->
-            <!-- SECTION 1: MODEL PAPERS                                    -->
-            <!-- ========================================================== -->
-            <div class="space-y-6">
-              <div class="pb-4 border-b border-ink-border/50 flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-2xl bg-sage-200/90 flex items-center justify-center text-sage-900 border border-sage-300 shrink-0">
-                    <i data-lucide="file-text" class="w-5 h-5 text-sage-800"></i>
-                  </div>
-                  <div>
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <h3 class="text-lg sm:text-2xl font-display font-extrabold text-ink uppercase tracking-tight">
-                        SECTION 1 &bull; MODEL PAPERS
-                      </h3>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100/90 text-emerald-900 border border-emerald-300/80">
-                        Autonomous Model Sets
-                      </span>
-                    </div>
-                    <p class="text-xs text-ink-secondary mt-0.5 font-serif italic">
-                      Official autonomous examination pattern model question papers with marks distribution and questions pattern.
-                    </p>
-                  </div>
+          <!-- All Model & Previous Papers at ONE Place -->
+          <div class="space-y-6">
+            <div class="pb-4 border-b border-ink-border/50 flex flex-wrap items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-2xl bg-sage-200/90 flex items-center justify-center text-sage-900 border border-sage-300 shrink-0">
+                  <i data-lucide="archive" class="w-5 h-5 text-sage-800"></i>
                 </div>
-                <span class="text-xs font-bold uppercase tracking-wider text-ink-muted">1 Verified Paper Available</span>
+                <div>
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <h3 class="text-lg sm:text-2xl font-display font-extrabold text-ink uppercase tracking-tight">
+                      QUESTION PAPERS COLLECTION
+                    </h3>
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100/90 text-emerald-900 border border-emerald-300/80">
+                      Autonomous Papers
+                    </span>
+                  </div>
+                  <p class="text-xs text-ink-secondary mt-0.5 font-serif italic">
+                    Official Autonomous Model Paper and Previous Examination Question Paper.
+                  </p>
+                </div>
               </div>
-
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                
-                <!-- Model Paper Card (Real File) -->
-                <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
-                  <div>
-                    <div class="flex items-center justify-between mb-3.5">
-                      <span class="text-base sm:text-lg font-display font-black text-ink">
-                        MODEL PAPER
-                      </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100/90 text-emerald-900 border border-emerald-300/80 shadow-xs">
-                        Official Model Paper
-                      </span>
-                    </div>
-
-                    <h4 class="text-base sm:text-lg font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
-                      Semester 5 AIML Official Model Question Paper
-                    </h4>
-                    
-                    <p class="text-[11px] sm:text-xs font-bold text-sage-800 mt-1 uppercase tracking-wider">
-                      MIC23 Academic Regulation (Autonomous)
-                    </p>
-
-                    <p class="text-xs text-ink-secondary mt-2.5 leading-relaxed">
-                      DVR &amp; Dr. HS MIC College of Technology autonomous regulation official model paper covering Deep Learning, Operating Systems, Computer Networks, and core electives. Includes marks distribution, section layout, and autonomous exam question patterns.
-                    </p>
-
-                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/30 text-[11px] font-bold uppercase tracking-wider text-ink-muted">
-                      <span>22 Pages</span>
-                      <span>&bull;</span>
-                      <span>2.6 MB</span>
-                      <span>&bull;</span>
-                      <span class="text-sage-700">All Core Subjects</span>
-                    </div>
-                  </div>
-
-                  <div class="mt-6 pt-4 border-t border-ink-border/30">
-                    <div class="grid grid-cols-2 gap-2.5">
-                      <button onclick="openPdfViewer('Semester 5 AIML Official Model Question Paper', 'MIC23 Autonomous Model Paper', 'pdfs/previous_papers/model_mic23_b.tech_aiml_949.pdf')" 
-                              class="w-full py-2.5 px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-xs">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                        <span>Read</span>
-                      </button>
-
-                      <a href="pdfs/previous_papers/model_mic23_b.tech_aiml_949.pdf" download 
-                         class="w-full py-2.5 px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm transition-all text-center border border-white/20">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                        <span>Download</span>
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- Model Papers Coming Soon Card (Ready for future additions) -->
-                <div class="glass-panel rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-dashed border-sage-300/80 bg-white/40 flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between mb-3.5">
-                      <span class="text-base sm:text-lg font-display font-black text-ink-muted">
-                        MORE MODEL PAPERS
-                      </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-sage-200/80 text-sage-900 border border-sage-300">
-                        Materials Coming Soon
-                      </span>
-                    </div>
-
-                    <h4 class="text-base sm:text-lg font-display font-bold text-ink-secondary leading-snug">
-                      Subject-Wise Unit Model Question Sets
-                    </h4>
-                    
-                    <p class="text-[11px] sm:text-xs font-bold text-ink-muted mt-1 uppercase tracking-wider">
-                      Upcoming Faculty Additions
-                    </p>
-
-                    <p class="text-xs text-ink-muted mt-2.5 leading-relaxed font-serif italic">
-                      Faculty provide chese subject-specific model question papers and targeted unit mock tests ikkada upload chestam. Currently being curated.
-                    </p>
-
-                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/20 text-[11px] font-semibold text-ink-muted">
-                      <span>Curated by Faculty</span>
-                      <span>&bull;</span>
-                      <span>Ready for Updates</span>
-                    </div>
-                  </div>
-
-                  <div class="mt-6 pt-4 border-t border-ink-border/20">
-                    <div class="w-full py-2.5 px-3 rounded-full bg-sage-100/80 text-sage-800 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 border border-sage-200">
-                      <i data-lucide="clock" class="w-3.5 h-3.5 text-sage-600"></i>
-                      <span>Coming Soon</span>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
+              <span class="text-xs font-bold uppercase tracking-wider text-ink-muted">2 Verified Papers</span>
             </div>
 
-
-            <!-- ========================================================== -->
-            <!-- SECTION 2: PREVIOUS PAPERS                                 -->
-            <!-- ========================================================== -->
-            <div class="space-y-6">
-              <div class="pb-4 border-b border-ink-border/50 flex flex-wrap items-center justify-between gap-3">
-                <div class="flex items-center gap-3">
-                  <div class="w-10 h-10 rounded-2xl bg-amber-100/90 flex items-center justify-center text-amber-900 border border-amber-300 shrink-0">
-                    <i data-lucide="archive" class="w-5 h-5 text-amber-800"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              
+              <!-- 1. Model Paper Card -->
+              <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-3.5">
+                    <span class="text-base sm:text-lg font-display font-black text-ink">
+                      MODEL PAPER
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-emerald-100/90 text-emerald-900 border border-emerald-300/80 shadow-xs">
+                      Official Model Paper
+                    </span>
                   </div>
-                  <div>
-                    <div class="flex items-center gap-2 flex-wrap">
-                      <h3 class="text-lg sm:text-2xl font-display font-extrabold text-ink uppercase tracking-tight">
-                        SECTION 2 &bull; PREVIOUS PAPERS
-                      </h3>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100/90 text-amber-900 border border-amber-300/80">
-                        Past Exam Papers
-                      </span>
-                    </div>
-                    <p class="text-xs text-ink-secondary mt-0.5 font-serif italic">
-                      Actual previous examination question papers for Semester 5 B.Tech AIML under autonomous regulations.
-                    </p>
+
+                  <h4 class="text-base sm:text-lg font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
+                    Semester 5 AIML Official Model Question Paper
+                  </h4>
+                  
+                  <p class="text-[11px] sm:text-xs font-bold text-sage-800 mt-1 uppercase tracking-wider">
+                    MIC23 Academic Regulation (Autonomous)
+                  </p>
+
+                  <p class="text-xs text-ink-secondary mt-2.5 leading-relaxed">
+                    DVR &amp; Dr. HS MIC College of Technology autonomous regulation official model paper covering Deep Learning, Operating Systems, Computer Networks, and core electives. Includes marks distribution, section layout, and autonomous exam question patterns.
+                  </p>
+
+                  <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/30 text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                    <span>22 Pages</span>
+                    <span>&bull;</span>
+                    <span>2.6 MB</span>
+                    <span>&bull;</span>
+                    <span class="text-sage-700">All Core Subjects</span>
                   </div>
                 </div>
-                <span class="text-xs font-bold uppercase tracking-wider text-ink-muted">1 Verified Paper Available</span>
+
+                <div class="mt-6 pt-4 border-t border-ink-border/30">
+                  <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="openPdfViewer('Semester 5 AIML Official Model Question Paper', 'MIC23 Autonomous Model Paper', 'pdfs/previous_papers/model_mic23_b.tech_aiml_949.pdf')" 
+                            class="w-full py-2.5 px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-xs">
+                      <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                      <span>Read</span>
+                    </button>
+
+                    <a href="pdfs/previous_papers/model_mic23_b.tech_aiml_949.pdf" download 
+                       class="w-full py-2.5 px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm transition-all text-center border border-white/20">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                      <span>Download</span>
+                    </a>
+                  </div>
+                </div>
               </div>
 
-              <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                
-                <!-- Previous Paper Card (Real File) -->
-                <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
-                  <div>
-                    <div class="flex items-center justify-between mb-3.5">
-                      <span class="text-base sm:text-lg font-display font-black text-ink">
-                        PREVIOUS EXAM
-                      </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100/90 text-amber-900 border border-amber-300/80 shadow-xs">
-                        Previous Exam Paper
-                      </span>
-                    </div>
-
-                    <h4 class="text-base sm:text-lg font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
-                      Semester 5 AIML Previous Examination Question Paper
-                    </h4>
-                    
-                    <p class="text-[11px] sm:text-xs font-bold text-sage-800 mt-1 uppercase tracking-wider">
-                      MIC23 Regulation &bull; Autonomous Examination
-                    </p>
-
-                    <p class="text-xs text-ink-secondary mt-2.5 leading-relaxed">
-                      Actual previous semester examination question papers for Semester 5 B.Tech AIML. Essential for reviewing repeated question trends, short 2-mark definitions, and long descriptive problems.
-                    </p>
-
-                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/30 text-[11px] font-bold uppercase tracking-wider text-ink-muted">
-                      <span>8 Pages</span>
-                      <span>&bull;</span>
-                      <span>708 KB</span>
-                      <span>&bull;</span>
-                      <span class="text-sage-700">Autonomous Papers</span>
-                    </div>
+              <!-- 2. Previous Exam Paper Card -->
+              <div class="glass-panel glass-panel-hover rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-white/80 hover:border-sage-500 shadow-sm flex flex-col justify-between group">
+                <div>
+                  <div class="flex items-center justify-between mb-3.5">
+                    <span class="text-base sm:text-lg font-display font-black text-ink">
+                      PREVIOUS EXAM
+                    </span>
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100/90 text-amber-900 border border-amber-300/80 shadow-xs">
+                      Previous Exam Paper
+                    </span>
                   </div>
 
-                  <div class="mt-6 pt-4 border-t border-ink-border/30">
-                    <div class="grid grid-cols-2 gap-2.5">
-                      <button onclick="openPdfViewer('Semester 5 AIML Previous Examination Question Paper', 'MIC23 Previous Exam Papers', 'pdfs/previous_papers/previous_mic23_b.tech_aiml_1023.pdf')" 
-                              class="w-full py-2.5 px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-xs">
-                        <i data-lucide="eye" class="w-3.5 h-3.5"></i>
-                        <span>Read</span>
-                      </button>
+                  <h4 class="text-base sm:text-lg font-display font-bold text-ink group-hover:text-sage-600 transition-colors leading-snug">
+                    Semester 5 AIML Previous Examination Question Paper
+                  </h4>
+                  
+                  <p class="text-[11px] sm:text-xs font-bold text-sage-800 mt-1 uppercase tracking-wider">
+                    MIC23 Regulation &bull; Autonomous Examination
+                  </p>
 
-                      <a href="pdfs/previous_papers/previous_mic23_b.tech_aiml_1023.pdf" download 
-                         class="w-full py-2.5 px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm transition-all text-center border border-white/20">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
-                        <span>Download</span>
-                      </a>
-                    </div>
+                  <p class="text-xs text-ink-secondary mt-2.5 leading-relaxed">
+                    Actual previous semester examination question papers for Semester 5 B.Tech AIML. Essential for reviewing repeated question trends, short 2-mark definitions, and long descriptive problems.
+                  </p>
+
+                  <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/30 text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                    <span>8 Pages</span>
+                    <span>&bull;</span>
+                    <span>708 KB</span>
+                    <span>&bull;</span>
+                    <span class="text-sage-700">Autonomous Papers</span>
                   </div>
                 </div>
 
-                <!-- Previous Papers Coming Soon Card (Ready for future additions) -->
-                <div class="glass-panel rounded-3xl md:rounded-[2rem] p-6 sm:p-7 border border-dashed border-amber-300/80 bg-white/40 flex flex-col justify-between">
-                  <div>
-                    <div class="flex items-center justify-between mb-3.5">
-                      <span class="text-base sm:text-lg font-display font-black text-ink-muted">
-                        MORE PREVIOUS PAPERS
-                      </span>
-                      <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-amber-100/90 text-amber-900 border border-amber-300">
-                        Materials Coming Soon
-                      </span>
-                    </div>
+                <div class="mt-6 pt-4 border-t border-ink-border/30">
+                  <div class="grid grid-cols-2 gap-2.5">
+                    <button onclick="openPdfViewer('Semester 5 AIML Previous Examination Question Paper', 'MIC23 Previous Exam Papers', 'pdfs/previous_papers/previous_mic23_b.tech_aiml_1023.pdf')" 
+                            class="w-full py-2.5 px-3 rounded-full glass-pill hover:bg-white text-ink text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 transition-all shadow-xs">
+                      <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+                      <span>Read</span>
+                    </button>
 
-                    <h4 class="text-base sm:text-lg font-display font-bold text-ink-secondary leading-snug">
-                      Mid-Term &amp; Supplementary Exam Papers
-                    </h4>
-                    
-                    <p class="text-[11px] sm:text-xs font-bold text-ink-muted mt-1 uppercase tracking-wider">
-                      Upcoming Archives
-                    </p>
-
-                    <p class="text-xs text-ink-muted mt-2.5 leading-relaxed font-serif italic">
-                      Previous autonomous mid-term and supplementary exam question papers inka gather chestunnam. As soon as verified, upload chestam.
-                    </p>
-
-                    <div class="flex items-center gap-3 mt-4 pt-3 border-t border-ink-border/20 text-[11px] font-semibold text-ink-muted">
-                      <span>Archive Collection</span>
-                      <span>&bull;</span>
-                      <span>Ready for Updates</span>
-                    </div>
-                  </div>
-
-                  <div class="mt-6 pt-4 border-t border-ink-border/20">
-                    <div class="w-full py-2.5 px-3 rounded-full bg-amber-100/70 text-amber-900 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 border border-amber-200">
-                      <i data-lucide="clock" class="w-3.5 h-3.5 text-amber-700"></i>
-                      <span>Coming Soon</span>
-                    </div>
+                    <a href="pdfs/previous_papers/previous_mic23_b.tech_aiml_1023.pdf" download 
+                       class="w-full py-2.5 px-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1.5 shadow-sm transition-all text-center border border-white/20">
+                      <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                      <span>Download</span>
+                    </a>
                   </div>
                 </div>
-
               </div>
+
             </div>
-
           </div>
+        `;
+
+        container.innerHTML = papersHtml;
+        lucide.createIcons();
+        return;
+      }
         `;
 
         container.innerHTML = papersHtml;
