@@ -117,12 +117,12 @@ const STUDY_DATABASE = {
       zipSize: "692 KB",
       desc: "Complete 5-unit study suite: Faculty original PDFs, AI-generated master Q&A answers, 5-unit complete 2 marks bank, and master question bank."
     },
-    // 3. Deep Learning (Core Units Unchanged)
+    // 3. Deep Learning (All 5 Units Complete)
     {
       id: "deep-learning",
       code: "23AM5T01",
       name: "Deep Learning",
-      tagline: "Neural Networks, Backpropagation, Optimizers & Question Bank",
+      tagline: "Neural Networks, Backpropagation, Optimizers & Complete Preparation (All 5 Units)",
       category: "Professional Core (PC)",
       credits: 3,
       semester: "sem5",
@@ -131,10 +131,10 @@ const STUDY_DATABASE = {
       color: "from-pink-500 to-rose-600",
       accentBg: "bg-sage-100 text-sage-900 border-sage-300",
       hasNotes: true,
-      totalUnitsAvailable: 3,
+      totalUnitsAvailable: 5,
       zipUrl: "pdfs/deep_learning/Deep_Learning_Complete_Notes.zip",
-      zipSize: "1.1 MB",
-      desc: "Unit-wise notes, backpropagation calculus, numericals, loss functions & important questions ready ga unnayi."
+      zipSize: "1.2 MB",
+      desc: "Unit-wise notes, AI generated answers for all 5 units, backpropagation calculus & important questions ready ga unnayi."
     },
     // 4. Full Stack Development-2 (From Syllabus)
     {
@@ -955,14 +955,16 @@ const STUDY_DATABASE = {
 
 
     // =========================================================================
-    // 🧠 DEEP LEARNING (CORE UNITS UNCHANGED)
+    // 🧠 DEEP LEARNING (ALL 5 UNITS - FACULTY PROVIDED & AI GENERATED)
     // =========================================================================
+    
+    // --- CATEGORY 1: FACULTY PROVIDED / HANDWRITTEN NOTES ---
     {
       id: "dl-unit-1",
       subjectId: "deep-learning",
       studyType: "mid-1",
       semester: "sem5",
-      materialType: "unit-notes",
+      materialType: "faculty-provided",
       unitNum: 1,
       unitLabel: "UNIT 01",
       title: "Linear Algebra, Biological & Artificial Neurons, Perceptron",
@@ -982,7 +984,7 @@ const STUDY_DATABASE = {
       subjectId: "deep-learning",
       studyType: "mid-1",
       semester: "sem5",
-      materialType: "unit-notes",
+      materialType: "faculty-provided",
       unitNum: 2,
       unitLabel: "UNIT 02",
       title: "MLP, Backpropagation, Loss Functions & Regularization",
@@ -1002,7 +1004,7 @@ const STUDY_DATABASE = {
       subjectId: "deep-learning",
       studyType: "mid-1",
       semester: "sem5",
-      materialType: "unit-notes",
+      materialType: "faculty-provided",
       unitNum: 3,
       unitLabel: "UNIT 03",
       title: "Optimization Algorithms, AdaGrad & Adaptive Methods",
@@ -1017,12 +1019,116 @@ const STUDY_DATABASE = {
       status: "available",
       isLatest: true
     },
+
+    // --- CATEGORY 2: AI GENERATED ANSWERS FOR COMPLETE PREPARATION (ALL 5 UNITS) ---
+    {
+      id: "dl-ai-unit-1",
+      subjectId: "deep-learning",
+      studyType: "mid-1",
+      semester: "sem5",
+      materialType: "ai-generated",
+      unitNum: 1,
+      unitLabel: "UNIT 01",
+      title: "Deep Learning Unit-1 AI Generated Answers",
+      subtitle: "Linear Algebra, Neurons, Activation Functions & Perceptron",
+      description: "Detailed AI-generated explanations, activation functions comparison, perceptron learning rule, XOR problem with network diagram & biological vs artificial neuron comparison.",
+      topics: ["Linear Algebra", "Neurons", "Perceptron", "XOR Problem", "Activation Functions", "AI Generated"],
+      pdfUrl: "pdfs/deep_learning/ai_generated/Deep_Learning_Unit-1(Ai generated answers).pdf",
+      fileSize: "29 KB",
+      pageCount: "12 Pages",
+      formatBadge: "AI Generated",
+      uploadDate: "Nov 13, 2026",
+      status: "available",
+      isLatest: true
+    },
+    {
+      id: "dl-ai-unit-2",
+      subjectId: "deep-learning",
+      studyType: "mid-1",
+      semester: "sem5",
+      materialType: "ai-generated",
+      unitNum: 2,
+      unitLabel: "UNIT 02",
+      title: "Deep Learning Unit-2 AI Generated Answers",
+      subtitle: "MLP, Backpropagation Calculus & Regularization",
+      description: "Comprehensive answers on multi-layer perceptron architecture, forward pass, backpropagation step-by-step calculus chain rule, gradient descent optimization & regularization methods.",
+      topics: ["MLP", "Backpropagation", "Chain Rule", "Loss Functions", "Regularization", "Dropout", "AI Generated"],
+      pdfUrl: "pdfs/deep_learning/ai_generated/Deep_Learning_Unit-2(Ai generated).pdf",
+      fileSize: "66 KB",
+      pageCount: "12 Pages",
+      formatBadge: "AI Generated",
+      uploadDate: "Nov 13, 2026",
+      status: "available",
+      isLatest: true
+    },
+    {
+      id: "dl-ai-unit-3",
+      subjectId: "deep-learning",
+      studyType: "mid-1",
+      semester: "sem5",
+      materialType: "ai-generated",
+      unitNum: 3,
+      unitLabel: "UNIT 03",
+      title: "Deep Learning Unit-3 AI Generated Answers (10 Marks)",
+      subtitle: "Optimization in Deep Learning, Momentum & Adaptive Methods",
+      description: "Complete 10-marks essay answers on stochastic gradient descent with momentum, AdaGrad, RMSProp, Adam optimizer working principles & learning rate scheduling.",
+      topics: ["Optimization", "Momentum", "AdaGrad", "RMSProp", "Adam Optimizer", "AI Generated"],
+      pdfUrl: "pdfs/deep_learning/ai_generated/Deep_Learning_Unit_III_Complete_Answers_10_Marks.pdf",
+      fileSize: "57 KB",
+      pageCount: "13 Pages",
+      formatBadge: "AI Generated",
+      uploadDate: "Nov 13, 2026",
+      status: "available",
+      isLatest: true
+    },
+    {
+      id: "dl-ai-unit-4",
+      subjectId: "deep-learning",
+      studyType: "mid-2",
+      semester: "sem5",
+      materialType: "ai-generated",
+      unitNum: 4,
+      unitLabel: "UNIT 04",
+      title: "Deep Learning Unit-4 AI Generated Answers (10 Marks)",
+      subtitle: "Convolutional Neural Networks (CNN) & Computer Vision",
+      description: "Detailed 10-marks answers covering convolution operations, pooling layers, padding/stride, receptive field, LeNet/AlexNet/VGG architectures & feature maps.",
+      topics: ["CNN", "Convolution", "Pooling", "Receptive Field", "AlexNet", "VGG", "AI Generated"],
+      pdfUrl: "pdfs/deep_learning/ai_generated/Deep_Learning_Unit_IV_Long_Answers_10_Marks.pdf",
+      fileSize: "62 KB",
+      pageCount: "18 Pages",
+      formatBadge: "AI Generated",
+      uploadDate: "Nov 13, 2026",
+      status: "available",
+      isLatest: true
+    },
+    {
+      id: "dl-ai-unit-5",
+      subjectId: "deep-learning",
+      studyType: "mid-2",
+      semester: "sem5",
+      materialType: "ai-generated",
+      unitNum: 5,
+      unitLabel: "UNIT 05",
+      title: "Deep Learning Unit-5 AI Generated Answers (10 Marks)",
+      subtitle: "Recurrent Neural Networks (RNN), LSTM & Sequence Modeling",
+      description: "Full 10-marks answers on RNN architecture, vanishing/exploding gradients problem, Backpropagation Through Time (BPTT), LSTM memory cells & GRU gating mechanisms.",
+      topics: ["RNN", "LSTM", "GRU", "BPTT", "Sequence Modeling", "AI Generated"],
+      pdfUrl: "pdfs/deep_learning/ai_generated/Deep_Learning_Unit_V_Long_Answers_10_Marks.pdf",
+      fileSize: "55 KB",
+      pageCount: "13 Pages",
+      formatBadge: "AI Generated",
+      uploadDate: "Nov 13, 2026",
+      status: "available",
+      isLatest: true
+    },
+
+    // --- CATEGORY 4: QUESTION BANKS ---
     {
       id: "dl-imp-questions",
       subjectId: "deep-learning",
       studyType: "mid-1",
       semester: "sem5",
-      materialType: "important-questions",
+      materialType: "question-banks",
       unitNum: null,
       unitLabel: "MID-1",
       title: "Deep Learning Mid-1 Important Questions List",
@@ -1042,7 +1148,7 @@ const STUDY_DATABASE = {
       subjectId: "deep-learning",
       studyType: "semester-5",
       semester: "sem5",
-      materialType: "important-questions",
+      materialType: "question-banks",
       unitNum: null,
       unitLabel: "ALL UNITS",
       title: "Deep Learning Master Question Bank (All Units)",

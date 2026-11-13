@@ -625,6 +625,56 @@
 
 
   <!-- ========================================================== -->
+    <!-- ========================================================== -->
+  <!-- DL AI GENERATED: PREPARE PROBLEMS FROM NOTES & YOUTUBE     -->
+  <!-- ========================================================== -->
+  <div id="dl-ai-modal" class="fixed inset-0 z-50 bg-ink/40 backdrop-blur-md hidden flex items-center justify-center p-4 sm:p-6 transition-all duration-200" onclick="closeDlAiModal()">
+    <div class="glass-panel relative w-full max-w-lg rounded-3xl md:rounded-[2.5rem] p-6 sm:p-8 md:p-10 shadow-2xl border border-white/90 bg-white/90 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-200" onclick="event.stopPropagation()">
+      
+      <!-- Circular Glass Close Button -->
+      <button onclick="closeDlAiModal()" 
+              class="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/80 hover:bg-white text-ink border border-sage-200/80 shadow-xs flex items-center justify-center active:scale-90 transition-all cursor-pointer" 
+              aria-label="Close Notice">
+        <i data-lucide="x" class="w-4 h-4 sm:w-5 sm:h-5 text-ink"></i>
+      </button>
+
+      <!-- Badge / Header -->
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-10 h-10 rounded-2xl bg-amber-100/90 text-amber-900 border border-amber-300/80 flex items-center justify-center shadow-xs shrink-0">
+          <i data-lucide="alert-triangle" class="w-5 h-5 text-amber-700"></i>
+        </div>
+        <span class="px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold uppercase tracking-widest bg-sage-200/90 text-sage-900 border border-sage-300 shadow-xs">
+          Deep Learning Exam Note
+        </span>
+      </div>
+
+      <!-- Main Heading Prominently -->
+      <h3 class="text-xl sm:text-2xl md:text-3xl font-display font-extrabold text-ink tracking-tight uppercase leading-snug">
+        PREPARE PROBLEMS FROM NOTES &amp; YOUTUBE
+      </h3>
+
+      <!-- Supporting Message -->
+      <p class="mt-3 text-xs sm:text-sm text-ink-secondary leading-relaxed font-medium">
+        Deep Learning numerical &amp; calculus problems (<span class="font-bold text-ink">Backpropagation Weight Update Calculations, Perceptron Convergence Numerical, Gradient Descent &amp; Learning Rates, Loss Calculations, Activation Function Derivatives</span>) kosam class notes &amp; YouTube video references practice cheyyandi. Ee AI-generated PDFs theory concepts, architectures &amp; descriptive 10-marks answers kosam use cheskondi.
+      </p>
+
+      <div class="mt-4 p-3 sm:p-3.5 rounded-2xl bg-sage-50/80 border border-sage-200/80 flex items-center gap-2.5 text-xs text-sage-900 font-semibold">
+        <i data-lucide="info" class="w-4 h-4 text-sage-700 shrink-0"></i>
+        <span>AI Generated study material chaduvukodaniki kindi button click cheyyi.</span>
+      </div>
+
+      <!-- Action Button -->
+      <div class="mt-6 sm:mt-7 flex items-center justify-end">
+        <button onclick="closeDlAiModal()" 
+                class="w-full sm:w-auto px-6 py-3 rounded-full bg-ink hover:bg-sage-600 text-canvas text-xs font-bold uppercase tracking-wider shadow-sm transition-all flex items-center justify-center gap-2 border border-white/20 active:scale-95">
+          <span>Arthamaindi, Continue &rarr;</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
   <!-- BUILT-IN FULLSCREEN PDF VIEWER MODAL                       -->
   <!-- ========================================================== -->
   <div id="pdf-viewer-modal" class="fixed inset-0 z-50 bg-ink/90 backdrop-blur-md hidden flex flex-col">
@@ -896,10 +946,27 @@
       selectedCategoryFilter = catId;
       renderApp();
 
-      // Strict Scope: Trigger popup only when entering 'ai-generated' under Operating Systems
+      // Strict Scope: Trigger popup only when entering 'ai-generated'
       if (selectedSubjectId === 'operating-systems' && catId === 'ai-generated' && prevCategory !== 'ai-generated') {
         openOsAiModal();
+      } else if (selectedSubjectId === 'deep-learning' && catId === 'ai-generated' && prevCategory !== 'ai-generated') {
+        openDlAiModal();
       }
+    }
+
+    function openDlAiModal() {
+      const modal = document.getElementById('dl-ai-modal');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeDlAiModal() {
+      const modal = document.getElementById('dl-ai-modal');
+      if (!modal) return;
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
     }
 
     function openOsAiModal() {
@@ -1047,7 +1114,7 @@
           <span class="text-ink font-bold">Mid-2 Preparation</span>
         `;
         viewTitle.innerText = "Mid-2 Preparation";
-        viewDesc.innerText = "“Mid-2 exams preparation kosam Operating Systems & Computer Networks Unit 4 & 5 study materials ready ga unnayi.”";
+        viewDesc.innerText = "“Mid-2 exams preparation kosam Operating Systems, Computer Networks & Deep Learning Unit 4 & 5 study materials ready ga unnayi.”";
 
         let mid2Html = `
           <div class="mb-6 sm:mb-10 p-5 sm:p-6 rounded-3xl md:rounded-[2rem] glass-card-sage border border-white/80 flex flex-wrap items-center justify-between gap-4 shadow-sm">
@@ -1060,10 +1127,10 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         `;
 
-        STUDY_DATABASE.subjects.filter(s => s.id === 'operating-systems' || s.id === 'computer-networks').forEach(sub => {
+        STUDY_DATABASE.subjects.filter(s => s.id === 'operating-systems' || s.id === 'computer-networks' || s.id === 'deep-learning').forEach(sub => {
           const subPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === sub.id && (p.unitNum === 4 || p.unitNum === 5 || p.studyType === 'mid-2'));
           mid2Html += `
             <div onclick="selectSubject('${sub.id}')" 
@@ -1288,7 +1355,7 @@
 
         // Strict 3 Primary Categories for OS and CN as requested
         let categories = [];
-        if (selectedSubjectId === 'operating-systems' || selectedSubjectId === 'computer-networks') {
+        if (selectedSubjectId === 'operating-systems' || selectedSubjectId === 'computer-networks' || selectedSubjectId === 'deep-learning') {
           categories = [
             {
               id: "faculty-provided",
@@ -1659,6 +1726,7 @@
         closeSearchModal();
         closePdfViewer();
         closeOsAiModal();
+        closeDlAiModal();
         toggleMobileS5Menu(false);
       }
     });
