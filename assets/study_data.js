@@ -152,7 +152,7 @@ const STUDY_DATABASE = {
       hasNotes: true,
       totalUnitsAvailable: 5,
       zipUrl: "pdfs/edvc/ai_generated/EDVC_All_Units_Separate_PDFs.zip",
-      zipSize: "1.6 MB",
+      zipSize: "2.0 MB",
       desc: "Complete 5-unit study suite: Faculty official textbook (147P), official syllabus, university model & previous papers, and AI-generated comprehensive handwritten 5-unit notes & 24-hr revision toolkit."
     },
     // 5. Full Stack Development-2 (From Syllabus)
@@ -1468,6 +1468,28 @@ const STUDY_DATABASE = {
       fileSize: "351 KB",
       pageCount: "10 Pages",
       formatBadge: "24-Hour Revision Kit",
+      uploadDate: "Nov 22, 2026",
+      status: "available",
+      isLatest: true
+    },
+
+    // --- CATEGORY 3: 2 MARKS – IMPORTANT SHORT QUESTIONS ---
+    {
+      id: "edvc-2m-bank",
+      subjectId: "edvc",
+      studyType: "semester-5",
+      semester: "sem5",
+      materialType: "two-marks",
+      unitNum: null,
+      unitLabel: "2M BANK",
+      title: "EDVC 5-Unit Master 2 Marks Question Bank (All Units)",
+      subtitle: "High-Yield 2-Mark Short Answer Questions & Definitions",
+      description: "Complete collection of 60 high-yield 2-mark definitive questions across Units 1 to 5, mapped to previous exam papers and official model papers with answer focus keywords.",
+      topics: ["2 Marks Bank", "Short Answers", "All 5 Units", "Important Questions", "Exam Definitions", "Two Marks"],
+      pdfUrl: "pdfs/edvc/ai_generated/EDVC_Unit_Wise_Question_Bank_2M_5M.pdf",
+      fileSize: "634 KB",
+      pageCount: "20 Pages",
+      formatBadge: "2 Marks Bank",
       uploadDate: "Nov 22, 2026",
       status: "available",
       isLatest: true
