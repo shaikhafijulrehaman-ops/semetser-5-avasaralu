@@ -533,7 +533,7 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-5 text-center md:text-left">
         
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
-          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">35+</p>
+          <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">45+</p>
           <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">Study PDFs</p>
         </div>
 
@@ -544,7 +544,7 @@
 
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
           <p class="text-3xl sm:text-5xl font-display font-extrabold text-ink tracking-tight">5 UNITS</p>
-          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">OS & CN Complete</p>
+          <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-ink-muted mt-1">OS, CN, DL & EDVC Complete</p>
         </div>
 
         <div class="glass-panel p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-xs">
@@ -1173,7 +1173,7 @@
           <span class="text-ink font-bold">Mid-2 Preparation</span>
         `;
         viewTitle.innerText = "Mid-2 Preparation";
-        viewDesc.innerText = "“Mid-2 exams preparation kosam Operating Systems, Computer Networks & Deep Learning Unit 4 & 5 study materials ready ga unnayi.”";
+        viewDesc.innerText = "“Mid-2 exams preparation kosam Operating Systems, Computer Networks, Deep Learning & EDVC Unit 4 & 5 study materials ready ga unnayi.”";
 
         let mid2Html = `
           <div class="mb-6 sm:mb-10 p-5 sm:p-6 rounded-3xl md:rounded-[2rem] glass-card-sage border border-white/80 flex flex-wrap items-center justify-between gap-4 shadow-sm">
@@ -1189,7 +1189,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         `;
 
-        STUDY_DATABASE.subjects.filter(s => s.id === 'operating-systems' || s.id === 'computer-networks' || s.id === 'deep-learning').forEach(sub => {
+        STUDY_DATABASE.subjects.filter(s => s.id === 'operating-systems' || s.id === 'computer-networks' || s.id === 'deep-learning' || s.id === 'edvc').forEach(sub => {
           const subPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === sub.id && (p.unitNum === 4 || p.unitNum === 5 || p.studyType === 'mid-2'));
           mid2Html += `
             <div onclick="selectSubject('${sub.id}')" 
@@ -1412,15 +1412,15 @@
 
         const allSubjectPdfs = STUDY_DATABASE.pdfs.filter(p => p.subjectId === selectedSubjectId);
 
-        // Strict 3 Primary Categories for OS and CN as requested
+        // Strict 3 Primary Categories for OS, CN, DL and EDVC as requested
         let categories = [];
-        if (selectedSubjectId === 'operating-systems' || selectedSubjectId === 'computer-networks' || selectedSubjectId === 'deep-learning') {
+        if (selectedSubjectId === 'operating-systems' || selectedSubjectId === 'computer-networks' || selectedSubjectId === 'deep-learning' || selectedSubjectId === 'edvc') {
           categories = [
             {
               id: "faculty-provided",
-              title: "FACULTY PROVIDED UNIT-WISE MATERIAL",
+              title: selectedSubjectId === 'edvc' ? "FACULTY PROVIDED STUDY MATERIAL" : "FACULTY PROVIDED UNIT-WISE MATERIAL",
               badge: "Faculty Provided",
-              desc: "Faculty provide chesina original unit-wise PDFs ikkada available untayi. Required Unit select cheskoni original material chaduvukondi."
+              desc: selectedSubjectId === 'edvc' ? "Faculty provide chesina original 147-page textbook guide, official syllabus and materials ikkada available untayi." : "Faculty provide chesina original unit-wise PDFs ikkada available untayi. Required Unit select cheskoni original material chaduvukondi."
             },
             {
               id: "ai-generated",
