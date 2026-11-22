@@ -1513,6 +1513,26 @@ const STUDY_DATABASE = {
       uploadDate: "Nov 22, 2026",
       status: "available",
       isLatest: true
+    },
+    {
+      id: "edvc-qb-2m-5m",
+      subjectId: "edvc",
+      studyType: "semester-5",
+      semester: "sem5",
+      materialType: "question-banks",
+      unitNum: null,
+      unitLabel: "2M & 5M QB",
+      title: "EDVC Master Unit-Wise Question Bank (2 Marks & 5 Marks Only)",
+      subtitle: "Complete 5-Unit Bank: 60 Short Questions [2M] & 40 Long Questions [5M]",
+      description: "Comprehensive exam question bank containing only questions organized unit-wise into Part A (2M) and Part B (5M). Tagged with exam importance, model paper mapping & key answer hints.",
+      topics: ["Question Bank", "2 Marks Questions", "5 Marks Questions", "All Units Questions", "Exam Practice", "Only Questions"],
+      pdfUrl: "pdfs/edvc/ai_generated/EDVC_Unit_Wise_Question_Bank_2M_5M.pdf",
+      fileSize: "634 KB",
+      pageCount: "20 Pages",
+      formatBadge: "Question Bank",
+      uploadDate: "Nov 22, 2026",
+      status: "available",
+      isLatest: true
     }
   ]
 };
